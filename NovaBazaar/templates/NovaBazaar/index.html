@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    
+
+        {% block title %}Create an Account{% endblock %}
+        
+
+        {% block content %}
+            <form method="POST" class="form-group">
+            {% csrf_token %}
+            
+            <button type="submit" class="btn btn-success">Register</button>
+            </form>
+        {% endblock %}
+
+</body>
+</html>
