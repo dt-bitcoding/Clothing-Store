@@ -20,7 +20,6 @@ def User(request):
 def success_view(request):
     return render(request, 'NovaBazaar/success.html')
 
-
 def Userlogin(request):
     if request.method == 'POST':
         Email = request.POST['Email']

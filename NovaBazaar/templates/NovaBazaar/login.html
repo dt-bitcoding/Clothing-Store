@@ -8,8 +8,12 @@
         <style>
           h1 {
             text-align: center;
-          }
-    
+        }
+          h1 {
+            border-bottom: 3px solid #000000;
+            /* text-align: center; */
+        }
+        
           .center {
             margin: auto;
             width: 60%;
@@ -32,21 +36,14 @@
             <div class="center">
                 <h1>User Can Login Here...</h1>
                 
-                
-                <label for="email"><b>Name</b></label>
-                <input type="text" placeholder="Enter Name" name="name" id="name" required>
-                <br>
+
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" id="email" required>
                 <br>
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
                 <br>
-                <label for="psw-Confirm"><b>Confirm Password</b></label>
-                <input type="password" placeholder="Confirm Password" name="psw-Confirm" id="psw-Confirm" required>
-            
-              <br>
-
+                
                 <button type="submit">Login</button>
                 <!-- <a href="{% url 'login' %}">Dont have Account Create</a> -->
                 <a href="{% url 'login' %}"></a>
