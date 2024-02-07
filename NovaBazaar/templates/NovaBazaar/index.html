@@ -4,30 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
+
+    <style>
+      h1 {
+        text-align: center;
+      }
+
+      .center {
+        margin: auto;
+        width: 60%;
+        border: 5px solid #73AD21;
+        padding: 30px;
+      }
+
+    </style>
+
 </head>
-<body>
+
+<body style="background-color: #e5fcf7;">
     
-
-        <!-- {% block title %}Create an Account{% endblock %} -->
-        <!-- <h1>User Can Registration Here...</h1> -->
-
-        <!-- {% block content %}
-            <form method="POST" class="form-group">
-            {% csrf_token %}
-            
-            <button type="submit" class="btn btn-success">Register</button>
-            </form>
-        {% endblock %} -->
-
-        <!-- <form action="/action_page.php"> -->
-
         <form method="post" action="{% url 'success' %}">
         {% csrf_token %}
           
-          <div class="container">
+          <div class="center">
             <h1>User Can Register is Here..</h1>
+            
+            <div class="container signin">
+              <p style="margin-left:750px;">Already have an account? <a href="{% url 'login' %}">Log In</a>.</p>
+            </div>
+
             <p>Please fill in this form to create an account.</p>
-            <hr>
+            
             
             <label for="email"><b>Name</b></label>
             <input type="text" placeholder="Enter Name" name="name" id="name" required>
@@ -40,14 +47,9 @@
             <br>
             <label for="psw-Confirm"><b>Confirm Password</b></label>
             <input type="password" placeholder="Confirm Password" name="psw-Confirm" id="psw-Confirm" required>
-            <hr>
-            
-        
+            <br>
+
             <button type="submit" class="registerbtn">Submit</button>
-          </div>
-          
-          <div class="container signin">
-            <p>Already have an account? <a href="#">Log in</a>.</p>
           </div>
         </form>
 

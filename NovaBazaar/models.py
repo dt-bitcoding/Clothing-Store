@@ -21,4 +21,3 @@ class Product(models.Model):
         return self.ProductName
     
     
-

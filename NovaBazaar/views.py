@@ -17,16 +17,18 @@ def User(request):
     else:
         return render(request, 'NovaBazaar/index.html')
     
-
-        
-
-    
-
-
 def success_view(request):
     return render(request, 'NovaBazaar/success.html')
 
 
-        
-
-
+def Userlogin(request):
+    if request.method == 'POST':
+        Email = request.POST['Email']
+        Password = request.POST['Password']
+        user = User.objects.filter(Email=Email, Password=Password)
+        if user:
+            return redirect('success')
+        else:
+            return HttpResponse('Invalid User')
+    else:
+        return render(request, 'NovaBazaar/login.html')
