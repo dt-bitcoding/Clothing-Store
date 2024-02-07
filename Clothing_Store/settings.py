@@ -24,6 +24,7 @@ SECRET_KEY = "django-insecure-28*#h6^ly5+s4$7t_7%hj4k=3g6xi275-wfz*j-k4(il7__@t1
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "NovaBazaar",
+    
     # 'NovaBazaar.apps.NovabazaarConfig',
 ]
 
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
 ]
 
 ROOT_URLCONF = "Clothing_Store.urls"
