@@ -47,3 +47,7 @@ def Userlogin(request):
         form = Form()
 
     return render(request, 'NovaBazaar/login.html', {'form': form})
+
+
+def logout(request):
+    return render(request, 'NovaBazaar/index.html')
