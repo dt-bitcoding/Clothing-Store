@@ -7,3 +7,6 @@ class MyForm(forms.Form):
     Confirm_password = forms.CharField(max_length=100)
 
 
+class Form(forms.Form):
+    Email = forms.EmailField(max_length=100)
+    Password = forms.CharField(max_length=100)

@@ -9,6 +9,6 @@ urlpatterns = [
     
     path('success/', success_view, name='success'),
     path('login/', views.signup, name='userlogin'),
-    path('login', views.Userlogin , name='login'),
+    path('loginuser', views.Userlogin , name='login'),
 ]
 
