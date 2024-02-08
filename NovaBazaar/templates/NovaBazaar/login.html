@@ -28,8 +28,21 @@
 
 <body style="background-color:rgb(255, 250, 243);">
 
+        <form method="post" action="{% url 'userlogin' %}">
+            {% csrf_token %}
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+            <br>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+            <br>
+            <button type="submit">Login</button>
+                
+            <a href="{% url 'login' %}"></a>
+        </form>
+
       
-        <form method="POST">
+        <!-- <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
 
@@ -45,10 +58,10 @@
                 <br>
                 
                 <button type="submit">Login</button>
-                <!-- <a href="{% url 'login' %}">Dont have Account Create</a> -->
+                
                 <a href="{% url 'login' %}"></a>
             </div>
-        </form>
+        </form> -->
 
 </body>
 </html>

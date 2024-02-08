@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import User
 
+def success_view(request):
+    return render(request, 'NovaBazaar/success.html')
+
+def signup(request):
+    return render(request, 'NovaBazaar/signup.html')
 
 def User(request):
     if request.method == 'POST':
@@ -17,9 +22,6 @@ def User(request):
     else:
         return render(request, 'NovaBazaar/index.html')
     
-def success_view(request):
-    return render(request, 'NovaBazaar/success.html')
-
 def Userlogin(request):
     if request.method == 'POST':
         Email = request.POST['Email']
@@ -28,6 +30,7 @@ def Userlogin(request):
         if user:
             return redirect('success')
         else:
-            return HttpResponse('Invalid User')
-    else:
-        return render(request, 'NovaBazaar/login.html')
+            return HttpResponse('Invalid Credentials')
+        
+    return render(request, 'NovaBazaar/login.html')
+
