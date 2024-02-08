@@ -1,15 +1,11 @@
-from django import forms 
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django import forms
 
-
-class Userform(UserCreationForm):
-  
+class MyForm(forms.Form):
+    FirstName = forms.CharField(max_length=100)
+    Email = forms.EmailField(max_length=100)
+    Password = forms.CharField(max_length=100)
+    confirm_password = forms.CharField(max_length=100)
     
-    class Meta:
-        model = User
-        fields = ['name', 'email', 'password1', 'password2']
-
         
     
     
