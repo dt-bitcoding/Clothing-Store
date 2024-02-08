@@ -11,17 +11,18 @@ def signup(request):
     return render(request, 'NovaBazaar/signup.html')
 
 def User(request):
-    
     if request.method == 'POST':
-        
         form = MyForm(request.POST)
         if form.is_valid():
-            FirstName = form.cleaned_data['FirstName']
-            Email = form.cleaned_data['Email']
-            Password = form.cleaned_data['Password']
+           
+            first_name = form.cleaned_data['first_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
             confirm_password = form.cleaned_data['confirm_password']
-            user = User(FirstName=FirstName, Email=Email, Password=Password, confirm_password=confirm_password)
-            user.save()
+            
+
+            user_instance = User(first_name=first_name, email=email, password=password, confirm_password=confirm_password)
+            user_instance.save()
 
             return redirect('success_page')
     else:
