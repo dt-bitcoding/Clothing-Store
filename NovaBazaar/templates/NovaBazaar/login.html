@@ -16,7 +16,7 @@
         
           .center {
             margin: auto;
-            width: 60%;
+            width: 85%;
             border: 5px solid #00546d;
             padding: 30px;
           }
@@ -31,14 +31,21 @@
           {% csrf_token %}
         <div class="center">
           <div class="container signin">
-            <p style="margin-left:950px;"><a href="{% url 'logout' %}">Log Out</a>.</p>
+
+            <p style="margin-left:83%;">Create an account <a href="{% url 'logout' %}">Log Out</a>.</p>
           </div>
           <h1>User Can Login Here...</h1>
+          
           <br>
 
           {{ form.as_p }}
-          
+
+          <p>By Clicking Reset Your Password </p>
+          <!-- <h6>Forgot PassWord ? </h6> -->
+          <p>Create an account <a href="{% url 'forgotpassword' %}">Forgot PassWord ? </a>.</p>
+
           <button type="submit">Submit</button>
+
         </div>
 
       </form>

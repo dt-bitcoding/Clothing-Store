@@ -35,19 +35,19 @@ def user(request):
     return render(request, 'NovaBazaar/index.html', {'form': form})
  
 
-# def Userlogin(request):
-#     if request.method == 'POST':
-#         form = Form(request.POST)
-#         if form.is_valid():
-#             email = request.POST.get('email', '')
-#             Password = request.POST.get('Password', '')
+#def Userlogin(request):
+    if request.method == 'POST':
+        form = Form(request.POST)
+        if form.is_valid():
+            email = request.POST.get('email', '')
+            Password = request.POST.get('Password', '')
             
-#             user_instance = User(Email=email, Password=Password)
-#             user_instance.save()
-#             return redirect('/loginuser')
-#     else:
-#         form = Form()
-#     return render(request, 'NovaBazaar/login.html', {'form': form})
+            user_instance = User(Email=email, Password=Password)
+            user_instance.save()
+            return redirect('/loginuser')
+    else:
+        form = Form()
+    return render(request, 'NovaBazaar/login.html', {'form': form})
     
 def Userlogin(request):
     if request.method == 'POST':
@@ -62,4 +62,7 @@ def Userlogin(request):
     else:
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
-            
+       
+def forgotpassword(request):
+    return render(request, 'NovaBazaar/forgotpassword.html')
+
