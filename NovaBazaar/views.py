@@ -19,8 +19,9 @@ def user(request):
     if request.method == 'POST':
         form = MyForm(request.POST)
         if form.is_valid():
-
-            firstname = request.POST.get('Firstname', '')
+            print(request.POST)
+            firstname = request.POST.get('FirstName')
+            print("Firstname ", firstname)
             email = request.POST.get('Email', '')
             password = request.POST.get('Password', '')
             confirmPassword = request.POST.get('Confirm_password', '')
