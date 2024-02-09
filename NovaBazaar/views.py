@@ -56,11 +56,10 @@ def Userlogin(request):
             email = request.POST.get('email', '')
             Password = request.POST.get('Password', '')
             user = authenticate(request, Email=email, Password=Password)
-
             if user is not None:
                 login(request, user)
                 return redirect('index.html')  # Redirect to the home page after successful login
     else:
-        form = AuthenticationForm()
+        form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
-
+            
