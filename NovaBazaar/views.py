@@ -69,27 +69,7 @@ def Userlogin(request):
     else:
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
-       
-       
-# def pass_reset_form(request):
-#     if request.method == 'POST':
-#         form = PasswordResetForm(request.POST)
-#         if form.is_valid():
-#             # Get the user associated with the provided email
-#             email = form.cleaned_data['email']
-#             user = User.objects.get(email=email)
-            
 
-#             # Create a PasswordResetView instance
-#             reset_view = PasswordResetView.as_view()
-  
-#             # Use the PasswordResetView to send the reset email
-#             reset_view(request)
-
-#             return redirect('/password_reset_done')
-#     else:
-#         form = PasswordResetForm()
-#     return render(request, 'NovaBazaar/pass_reset_form.html', {'form': form})
 def pass_reset_form(request):
     if request.method == 'POST':
         form = PasswordResetForm(request.POST)
@@ -97,8 +77,8 @@ def pass_reset_form(request):
             email = request.POST.get('email', '')
             send_mail('Password reset', 'Here is the message.', settings.EMAIL_HOST_USER, [email], fail_silently=False)
             
-            # send_mail('Password reset', 'Here is the message.', settings.EMAIL_HOST_USER, [email], fail_silently=False)
-            return render(request, 'NovaBazaar/password_reset_done.html')
+           
+            return redirect('/password_reset_done')
     else:
         form = PasswordResetForm()
     return render(request, 'NovaBazaar/pass_reset_form.html', {'form': form})

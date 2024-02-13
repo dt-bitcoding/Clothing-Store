@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import smtplib
+import smtplib as s
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -154,6 +154,26 @@ EMAIL_HOST_USER = 'dt.bitcoding@gmail.com'
 EMAIL_HOST_PASSWORD = 'movc eptj thth kcxp'
 EMAIL_PORT = 587
 EMAIL_USE_SSL = False
+
+##########################################Testing Email Sending############################################
+
+# ob=s.SMTP("smtp.gmail.com",587)
+
+# ob.starttls()
+
+# ob.login("dt.bitcoding@gmail.com", "movc eptj thth kcxp")
+
+# subject="Sending email using python"
+# body="This is a test email sent using python script"
+# message="Subject:{}\n\n{}".format(subject,body)
+# # print(message)
+# listofaddress=["darshiltalaviya8834@gmail.com","demo.darshil@yopmail.com"]
+# ob.sendmail("dt.bitcoding@gmail.com",listofaddress,message)
+
+# print("Sent successfully to the given email address")
+# ob.quit()
+##########################################Testing Email Sending############################################
+
 
 
 # Default primary key field type
