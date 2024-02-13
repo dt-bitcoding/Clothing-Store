@@ -7,8 +7,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.views import PasswordResetView
 from django.core.mail import send_mail
+from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
-
 
 
 
@@ -70,18 +70,39 @@ def Userlogin(request):
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
 
-def pass_reset_form(request):
-    if request.method == 'POST':
-        form = PasswordResetForm(request.POST)
-        if form.is_valid():
-            email = request.POST.get('email', '')
-            send_mail('Password reset', 'Here is the message.', settings.EMAIL_HOST_USER, [email], fail_silently=False)
+# def pass_reset_form(request):
+#     if request.method == 'POST':
+#         form = PasswordResetForm(request.POST)
+#         if form.is_valid():
+#             email = request.POST.get('email', '')
+#             send_mail('Password reset', 'Here is the message.', settings.EMAIL_HOST_USER, [email], fail_silently=False)
             
            
-            return redirect('/password_reset_done')
-    else:
-        form = PasswordResetForm()
-    return render(request, 'NovaBazaar/pass_reset_form.html', {'form': form})
+#             return redirect('/password_reset_done')
+#     else:
+#         form = PasswordResetForm()
+#     return render(request, 'NovaBazaar/pass_reset_form.html', {'form': form})
+
+def pass_reset_form(request):  
+    if request.method == "POST": 
+        with get_connection(  
+              host=settings.EMAIL_HOST, 
+        port=settings.EMAIL_PORT,  
+       username=settings.EMAIL_HOST_USER,  
+       password=settings.EMAIL_HOST_PASSWORD,  
+        use_tls=settings.EMAIL_USE_TLS 
+        ) as connection:  
+            recipient_list = request.POST.get("email").split()  
+            subject = request.POST.get("subject")  
+            email_from = settings.EMAIL_HOST_USER  
+            message = request.POST.get("message")  
+            print(type(recipient_list)) 
+            EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()  
+  
+    # return render(request, 'send_emails.html')
+    # return render(request, 'NovaBazaar/pass_reset_form.html')
+    return redirect('/password_reset_done')
+
 
 
 def pass_reset_confirm(request):
