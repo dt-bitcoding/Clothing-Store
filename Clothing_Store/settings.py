@@ -173,7 +173,7 @@ EMAIL_USE_SSL = False
 
 # print("Sent successfully to the given email address")
 # ob.quit()
-##########################################Testing Email Sending############################################
+##########################################End Testing Email Sending############################################
 
 
 

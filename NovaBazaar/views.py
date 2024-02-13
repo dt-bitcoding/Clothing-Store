@@ -92,7 +92,6 @@ def pass_reset_form(request):
         form = PasswordResetForm()
     return render(request, 'NovaBazaar/pass_reset_form.html', {'form': form})
 
-
 def pass_reset_confirm(request):
     return render(request, 'NovaBazaar/pass_reset_confirm.html')
 
