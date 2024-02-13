@@ -9,5 +9,6 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'ProductName', 'Category', 'Order', 'Price')
+    list_display = ('id', 'Product', 'Category', 'Order')
     
+

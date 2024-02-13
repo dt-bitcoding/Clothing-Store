@@ -64,6 +64,28 @@ def Userlogin(request):
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
        
-def forgotpassword(request):
-    return render(request, 'NovaBazaar/forgotpassword.html')
+       
+def pass_reset_form(request):
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+        if form.is_valid():
+            email = request.POST.get('Email', '')
+            user_instance = User(Email=email)
+            user_instance.save()
+            return redirect('/password_reset_done')
+    else:
+        form = MyForm()
+    return render(request, 'NovaBazaar/pass_reset_form.html', {'form': form})
+
+    # return render(request, 'NovaBazaar/pass_reset_form.html')
+
+
+def pass_reset_confirm(request):
+    return render(request, 'NovaBazaar/pass_reset_confirm.html')
+
+def pass_reset_done(request):
+    return render(request, 'NovaBazaar/pass_reset_done.html')
+
+def pass_reset_complete(request):
+    return render(request, 'NovaBazaar/pass_reset_complete.html')
 
