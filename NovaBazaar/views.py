@@ -84,13 +84,13 @@ def pass_reset_form(request):
             email_from = settings.EMAIL_HOST_USER  
             message = request.POST.get("message")  
             print(type(recipient_list)) 
-            EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()  
+            EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()
+
 
         return redirect('/password_reset_done')
     else:
         form = PasswordResetForm()
     return render(request, 'NovaBazaar/pass_reset_form.html', {'form': form})
-
 
 
 def pass_reset_confirm(request):
@@ -101,4 +101,3 @@ def pass_reset_done(request):
 
 def pass_reset_complete(request):
     return render(request, 'NovaBazaar/pass_reset_complete.html')
-
