@@ -9,6 +9,7 @@ from django.contrib.auth.views import PasswordResetView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 
 
 
@@ -31,7 +32,7 @@ def user(request):
             email = request.POST.get('Email', '')
             password = request.POST.get('Password', '')
             confirmPassword = request.POST.get('Confirm_password', '')
-        
+
             user_instance = User(FirstName=firstname, Email=email, Password=password, confirm_password=confirmPassword)
             user_instance.save()
             
@@ -79,11 +80,20 @@ def pass_reset_form(request):
        password=settings.EMAIL_HOST_PASSWORD,  
         use_tls=settings.EMAIL_USE_TLS 
         ) as connection:  
-            recipient_list = request.POST.get("email").split()  
+            recipient_list = request.POST.get("email").split() 
+
+            # subject, from_email, to = "hello", "demo.darshil@yopmail.com", "darashiltalaviya8834@gmail.com"
+            # text_content = "This is an important message."
+            # html_content = "<p>This is an <strong>important</strong> message.</p>"
+            # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            # msg.attach_alternative(html_content, "text/html")
+            # msg.send()
+
             subject = request.POST.get("subject")  
             email_from = settings.EMAIL_HOST_USER  
             message = request.POST.get("message")  
             print(type(recipient_list)) 
+            # EmailMessage(subject, message, email_from, recipient_list, body='http://127.0.0.1:4455/password_reset_complete/', connection=connection).send()
             EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()
 
 
