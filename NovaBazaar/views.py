@@ -74,7 +74,7 @@ def Userlogin(request):
 def pass_reset_form(request):  
     if request.method == "POST": 
         with get_connection(  
-              host=settings.EMAIL_HOST, 
+            host=settings.EMAIL_HOST, 
         port=settings.EMAIL_PORT,  
        username=settings.EMAIL_HOST_USER,  
        password=settings.EMAIL_HOST_PASSWORD,  
@@ -93,13 +93,14 @@ def pass_reset_form(request):
             email_from = settings.EMAIL_HOST_USER  
             message = request.POST.get("message")  
             print(type(recipient_list)) 
-            EmailMessage(subject, message, email_from, recipient_list, body='http://127.0.0.1:4455/password_reset_complete/', connection=connection).send()
-            # EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()
+            # EmailMessage(subject, message, email_from, recipient_list, body='http://127.0.0.1:4455/password_reset_complete/', connection=connection).send()
+            EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()
+            
         return redirect('/password_reset_done')
+        
     else:
         form = PasswordResetForm()
     return render(request, 'NovaBazaar/pass_reset_form.html', {'form': form})
-
 
 def pass_reset_confirm(request):
     return render(request, 'NovaBazaar/pass_reset_confirm.html')
