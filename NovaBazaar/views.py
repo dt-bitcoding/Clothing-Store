@@ -34,7 +34,7 @@ def signup(request):
             user_instance = User(FirstName=firstname, Email=email, Password=password, confirm_password=confirmPassword)
             user_instance.save()
             
-            return redirect('/success')
+            return redirect('success/')
     else:
         form = MyForm()
 
@@ -54,11 +54,8 @@ def Userlogin(request):
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
 
-# def signup(request):
-#     return render(request, 'NovaBazaar/signup.html')
-
 def success_view(request):
-    return render(request, 'NovaBazaar/success.html')
+    return render(request, 'NovaBazaar/home.html')
 
 
 def pass_reset_form(request):  

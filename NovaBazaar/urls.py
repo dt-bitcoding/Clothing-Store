@@ -15,7 +15,10 @@ urlpatterns = [
     
 
 
-    path('success/', success_view, name='success'),
+    # path('success/', success_view, name='success'),
+
+    path('signup/success/', success_view, name='success'),
+    
     # path('login/', views.signup, name='userlogin'),
     path('loginuser', views.Userlogin , name='login'),
     path('logout/', views.logout, name='logout'),
