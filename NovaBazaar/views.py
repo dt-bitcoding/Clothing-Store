@@ -12,16 +12,6 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 
 
-
-def success_view(request):
-    return render(request, 'NovaBazaar/success.html')
-
-def signup(request):
-    return render(request, 'NovaBazaar/signup.html')
-
-def logout(request):
-    return render(request, 'NovaBazaar/index.html')
-
 def user(request):
     if request.method == 'POST':
         form = MyForm(request.POST)
@@ -41,22 +31,7 @@ def user(request):
         form = MyForm()
 
     return render(request, 'NovaBazaar/index.html', {'form': form})
- 
 
-#def Userlogin(request):
-    if request.method == 'POST':
-        form = Form(request.POST)
-        if form.is_valid():
-            email = request.POST.get('email', '')
-            Password = request.POST.get('Password', '')
-            
-            user_instance = User(Email=email, Password=Password)
-            user_instance.save()
-            return redirect('/loginuser')
-    else:
-        form = Form()
-    return render(request, 'NovaBazaar/login.html', {'form': form})
-    
 def Userlogin(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -70,6 +45,13 @@ def Userlogin(request):
     else:
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
+
+def signup(request):
+    return render(request, 'NovaBazaar/signup.html')
+
+def success_view(request):
+    return render(request, 'NovaBazaar/success.html')
+
 
 def pass_reset_form(request):  
     if request.method == "POST": 
@@ -110,3 +92,6 @@ def pass_reset_done(request):
 
 def pass_reset_complete(request):
     return render(request, 'NovaBazaar/pass_reset_complete.html')
+
+def logout(request):
+    return render(request, 'NovaBazaar/index.html')
