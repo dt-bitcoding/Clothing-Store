@@ -11,8 +11,10 @@ from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 
+def home(request):
+    return render(request, 'NovaBazaar/home.html')
 
-def user(request):
+def signup(request):
     if request.method == 'POST':
         form = MyForm(request.POST)
         if form.is_valid():
@@ -46,8 +48,8 @@ def Userlogin(request):
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
 
-def signup(request):
-    return render(request, 'NovaBazaar/signup.html')
+# def signup(request):
+#     return render(request, 'NovaBazaar/signup.html')
 
 def success_view(request):
     return render(request, 'NovaBazaar/success.html')

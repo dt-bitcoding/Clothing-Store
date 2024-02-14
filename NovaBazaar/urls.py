@@ -5,10 +5,15 @@ from .views import success_view
 
 
 urlpatterns = [
-    path('', views.user, name='index'),
-    
+    # path('', views.user, name='index'),
+    # path('home/', views.home, name='home'),
+
+    path('signup/', views.signup, name='signup'),
+    path('', views.home, name='home'),
+
+
     path('success/', success_view, name='success'),
-    path('login/', views.signup, name='userlogin'),
+    # path('login/', views.signup, name='userlogin'),
     path('loginuser', views.Userlogin , name='login'),
     path('logout/', views.logout, name='logout'),
     path('reset_password/', views.pass_reset_form, name='reset_password'),
