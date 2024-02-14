@@ -87,7 +87,7 @@ def pass_reset_form(request):
             email = EmailMessage(
                 subject='Sending to the Testing Email',
                 body='http://127.0.0.1:4455/password_reset_complete/',
-                from_email='your_email@example.com',
+                from_email='demo.darshil@yopmail.com',
                 to=recipient_list,
                 bcc=bcc_list,  # Make sure bcc is a list or tuple
                 connection=connection

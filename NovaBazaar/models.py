@@ -13,12 +13,25 @@ class User(models.Model):
         return self.FirstName
 
 class Product(models.Model):
-    Product = models.CharField(max_length=100)
-    Category = models.CharField(max_length=100)
-    Order = models.IntegerField()
-    
+    name = models.CharField(max_length=255)
+    price = models.FloatField()
 
     def __str__(self):
-        return self.ProductName
+        return self.name
     
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+    
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    total = models.FloatField()
+
+    def __str__(self):
+        return self.user.FirstName + " " + self.product.name
     
