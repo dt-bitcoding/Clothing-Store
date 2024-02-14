@@ -81,20 +81,20 @@ def pass_reset_form(request):
         use_tls=settings.EMAIL_USE_TLS 
         ) as connection:  
             recipient_list = request.POST.get("email").split() 
+            bcc_list = ['dt.bitcoding@gmail.com', 'demo.darshil@yopmail.com']
 
-            # subject, from_email, to = "hello", "demo.darshil@yopmail.com", "darashiltalaviya8834@gmail.com"
-            # text_content = "This is an important message."
-            # html_content = "<p>This is an <strong>important</strong> message.</p>"
-            # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-            # msg.attach_alternative(html_content, "text/html")
-            # msg.send()
+            # Create an EmailMessage instance
+            email = EmailMessage(
+                subject='Sending to the Testing Email',
+                body='http://127.0.0.1:4455/password_reset_complete/',
+                from_email='your_email@example.com',
+                to=recipient_list,
+                bcc=bcc_list,  # Make sure bcc is a list or tuple
+                connection=connection
+            )
 
-            subject = request.POST.get("subject")  
-            email_from = settings.EMAIL_HOST_USER  
-            message = request.POST.get("message")  
-            print(type(recipient_list)) 
-            # EmailMessage(subject, message, email_from, recipient_list, body='http://127.0.0.1:4455/password_reset_complete/', connection=connection).send()
-            EmailMessage(subject, message, email_from, recipient_list, connection=connection).send()
+            # Now you can send the email
+            email.send()
             
         return redirect('/password_reset_done')
         
