@@ -14,6 +14,12 @@ from django.core.mail import EmailMultiAlternatives
 def home(request):
     return render(request, 'NovaBazaar/home.html')
 
+def contact(request):
+    return render(request, 'NovaBazaar/contact.html')
+
+def about(request):
+    return render(request, 'NovaBazaar/about.html')
+
 def signup(request):
     if request.method == 'POST':
         form = MyForm(request.POST)

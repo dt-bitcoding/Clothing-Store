@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+h3 {
+  text-align: center;
+  font-size: 20px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #9debff;
+}
+
+.topnav a {
+  float: right;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #000000;
+  color: rgb(255, 136, 0);
+}
+
+.topnav a.active {
+  background-color: #002719;
+  color: rgb(236, 161, 161);
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Search bar */
+
+.box { 
+  margin: 10px auto;
+  width: 100%;
+  max-width: 200px;
+  height: 40px; 
+  text-align: center; 
+}
+
+.box .container-1 input{
+   width: 90%;
+}
+
+</style>
+
+<style media="screen"> 
+  body { 
+      background-image: linear-gradient( 
+          to right, rgb(255, 172, 78), rgb(241, 139, 255)); 
+  }
+</style>
+
+</head>
+
+<body>
+  <div class="topnav">
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'about' %}">About</a>
+    <a href="{% url 'home' %}">Home</a>
+
+    <div class="box"> 
+      <div class="container-1"> 
+        <input type="search" id="search" placeholder="Search..."> 
+      </div> 
+  </div>
+
+</div>
+
+<h3>Contact Form</h3>
+
+<div class="container">
+  <form action="/action_page.php">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">India</option>
+      <option value="usa">USA</option>
+    </select>
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+      <center> 
+          <h1 style="color:rgb(41, 82, 0);"> 
+              Bitcoding Solutions
+          </h1> 
+            
+          <div> 
+              <!-- Google Map Copied Code -->
+              <iframe src="https://www.google.com/maps/place/Bitcoding+Solutions+%C2%AE/@21.2316112,72.8755536,15z/data=!4m6!3m5!1s0x3be04f48f110ae97:0x10bf052ee6735937!8m2!3d21.2316112!4d72.8755536!16s%2Fg%2F11t4hfky2y?entry=ttu"
+                      width="750"
+                      height="250"
+                      frameborder="0"
+                      style="border:0;"
+                      allowfullscreen=""
+                      aria-hidden="false"
+                      tabindex="0"> 
+              </iframe> 
+          </div> 
+      </center> 
+</div>
+
+</body>
+</html>

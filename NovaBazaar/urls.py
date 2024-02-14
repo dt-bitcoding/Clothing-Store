@@ -7,9 +7,12 @@ from .views import success_view
 urlpatterns = [
     # path('', views.user, name='index'),
     # path('home/', views.home, name='home'),
-
-    path('signup/', views.signup, name='signup'),
+    
     path('', views.home, name='home'),
+    path('signup/', views.signup, name='signup'),
+    path('contact/', views.contact, name='contact'),
+    path('about/', views.about, name='about'),
+    
 
 
     path('success/', success_view, name='success'),
