@@ -82,8 +82,8 @@ body {
 
   </div>
 
-        <form method="POST">
-          {% csrf_token %}
+        <form action="" method="POST">{% csrf_token %}
+          
         <div class="center">
           <div class="container signin">
 
@@ -95,6 +95,7 @@ body {
           <br>
 
           {{ form.as_p }}
+          
 
           <p>By Clicking Reset Your Password </p>
           <!-- <h6>Forgot PassWord ? </h6> -->

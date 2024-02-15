@@ -1,161 +1,159 @@
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
+  <style>
+    /* menubar */
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-/* menubar */
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+    .topnav {
+      overflow: hidden;
+      background-color: #9debff;
+    }
 
-.topnav {
-  overflow: hidden;
-  background-color: #9debff;
-}
+    .topnav a {
+      float: right;
+      color: #000000;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
 
-.topnav a {
-  float: right;
-  color: #000000;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
+    .topnav a:hover {
+      background-color: #000000;
+      color: rgb(255, 136, 0);
+    }
 
-.topnav a:hover {
-  background-color: #000000;
-  color: rgb(255, 136, 0);
-}
+    .topnav a.active {
+      background-color: #002719;
+      color: rgb(236, 161, 161);
+    }
 
-.topnav a.active {
-  background-color: #002719;
-  color: rgb(236, 161, 161);
-}
+    /* Search bar */
 
-/* Search bar */
+    .box {
+      margin: 10px auto;
+      width: 100%;
+      max-width: 200px;
+      height: 29px;
+      text-align: center;
+    }
 
-.box { 
-  margin: 10px auto;
-  width: 100%;
-  max-width: 200px;
-  height: 40px; 
-  text-align: center; 
-}
+    .box .container-1 input {
+      width: 100%;
+    }
 
-.box .container-1 input{
-   width: 90%;
-}
+    /* Sub Menu & Categories */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
 
-/* Sub Menu & Categories */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
+    .navbar {
+      overflow: hidden;
+      background-color: #ff6347;
+    }
 
-.navbar {
-  overflow: hidden;
-  background-color: #ff6347; 
-}
+    .navbar a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
 
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+    .subnav {
+      float: left;
+      overflow: hidden;
+    }
 
-.subnav {
-  float: left;
-  overflow: hidden;
-}
+    .subnav .subnavbtn {
+      font-size: 18px;
+      border: none;
+      outline: none;
+      color: rgb(255, 255, 255);
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
 
-.subnav .subnavbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: rgb(255, 255, 255);
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
+    .navbar a:hover,
+    .subnav:hover .subnavbtn {
+      background-color: rgb(0, 0, 0);
+    }
 
-.navbar a:hover, .subnav:hover .subnavbtn {
-  background-color: rgb(0, 0, 0);
-}
+    .subnav-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: rgb(255, 255, 255);
+      width: 100%;
+      z-index: 1;
+    }
 
-.subnav-content {
-  display: none;
-  position: absolute;
-  left: 0;
-  background-color: rgb(255, 255, 255);
-  width: 100%;
-  z-index: 1;
-}
+    .subnav-content a {
+      float: left;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+    }
 
-.subnav-content a {
-  float: left;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-}
+    .subnav-content a:hover {
+      background-color: #eee;
+      color: rgb(0, 0, 0);
+    }
 
-.subnav-content a:hover {
-  background-color: #eee;
-  color: rgb(0, 0, 0);
-}
-
-.subnav:hover .subnav-content {
-  display: block;
-}
-
-</style>
+    .subnav:hover .subnav-content {
+      display: block;
+    }
+  </style>
+  <title>Clothing Store</title>
 </head>
+
 <body>
 
-    <div class="topnav">
-        <a href="{% url 'login' %}">Log In</a>
-        <a href="{% url 'contact' %}">Contact</a>
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'home' %}">Home</a>
-        <!-- <input type="text" placeholder="Search For Product"> -->
+  <div class="topnav">
 
-        <div class="box"> 
-            <div class="container-1"> 
-              <input type="search" id="search" placeholder="Search..."> 
-            </div> 
-        </div>
-          
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'about' %}">About</a>
+    <a href="{% url 'home' %}">Home</a>
+
+    <div class="box">
+      <div class="container-1">
+        <input type="search" id="search" placeholder="Search...">
+
+      </div>
+
     </div>
 
-    <div class="navbar">
-   
-        <div class="subnav">
-          <button class="subnavbtn">Mens <i class="fa fa-caret-down"></i></button>
-          <div class="subnav-content">
-            <a href="#bring">T-shirt</a>
-            <a href="#deliver">Shirts</a>
-            <a href="#deliver">Jeans</a>
-      
-          </div>
-        </div> 
-        <div class="subnav">
-          <button class="subnavbtn">Womens <i class="fa fa-caret-down"></i></button>
-          <div class="subnav-content">
-            <a href="#link1">T-shirt</a>
-            <a href="#link2">Shirts</a>
-      
-          </div>
-        </div>
+  </div>
+
+  <div class="navbar">
+
+    <div class="subnav">
+      <button class="subnavbtn">GentalMens <i class="fa fa-caret-down"></i></button>
+      <div class="subnav-content">
+        <a href="#bring">T-shirt</a>
+        <a href="#deliver">Shirts</a>
+        <a href="#deliver">Jeans</a>
+
       </div>
-      
-      <div style="padding:0 16px">
-        
+    </div>
+    <div class="subnav">
+      <button class="subnavbtn">Womens <i class="fa fa-caret-down"></i></button>
+      <div class="subnav-content">
+        <a href="#link1">T-shirt</a>
+        <a href="#link2">Shirts</a>
+
       </div>
+    </div>
+  </div>
 
 </body>
+
 </html>

@@ -17,7 +17,7 @@ urlpatterns = [
     path('password_reset_confirm/', views.pass_reset_confirm, name='pass_reset_confirm'),
     path('password_reset_done/', views.pass_reset_done, name='password_reset_done'),
     path('password_reset_complete/', views.pass_reset_complete, name='password_reset_complete'),
-
+    path('product/<int:pk>', views.product, name='product'),
 
 ]
 
