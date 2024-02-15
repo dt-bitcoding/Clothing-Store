@@ -4,12 +4,12 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import PermissionsMixin
-# from .custom_user_manager_module import CustomUserManager
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from .manager import UserManager
-# from django.contrib.auth.models import User
+
+
 class User(AbstractUser):
-    # username = None
+    
     username = models.CharField(max_length=100, unique=True)
     email = models.EmailField(unique=True)
     mobile = models.CharField(max_length=15, unique=True)
