@@ -1,5 +1,29 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from NovaBazaar.models import User
+# from .models import CustomUser
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+
+
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.')
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+
+
+
+# class CustomUserCreationForm(UserCreationForm):
+#     class Meta(UserCreationForm.Meta):
+#         model = CustomUser
+#         fields = ('email',) 
+
+# class CustomUserChangeForm(UserChangeForm):
+#     class Meta(UserChangeForm.Meta):
+#         model = CustomUser
+#         fields = '__all__'
 
 
 class MyForm(forms.Form):
@@ -7,6 +31,12 @@ class MyForm(forms.Form):
     Email = forms.EmailField(max_length=100)
     Password = forms.CharField(widget=forms.PasswordInput)
     Confirm_password = forms.CharField(widget=forms.PasswordInput)
+
+
+    class Meta:
+        model = User
+        fields = ["FirstName", "Email", 'Password', 'confirm_password']
+
 
     def clean(self):
         

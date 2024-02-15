@@ -1,9 +1,13 @@
 from django.contrib import admin
 from .models import Product, User, Category, Order
+from django.contrib.auth.admin import UserAdmin
+from .models import *
+from django.contrib import admin
+# from django.contrib.auth import get_user_model
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'FirstName', 'Email', 'Password', 'confirm_password')
+# admin.site.register(get_user_model())
+
+admin.site.register(User)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -16,5 +20,4 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'product', 'quantity', 'total')
-
 

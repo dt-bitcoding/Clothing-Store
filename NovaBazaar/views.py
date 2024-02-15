@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import User
-from .forms import MyForm, Form
+from .forms import Form, MyForm
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import PasswordResetForm
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm 
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 def home(request):
     return render(request, 'NovaBazaar/home.html')
@@ -33,8 +35,9 @@ def signup(request):
 
             user_instance = User(FirstName=firstname, Email=email, Password=password, confirm_password=confirmPassword)
             user_instance.save()
+            form.save()
             
-            return redirect('success/')
+            return redirect("login")
     else:
         form = MyForm()
 

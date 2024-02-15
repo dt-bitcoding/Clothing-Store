@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "NovaBazaar",
+    "rest_framework",
     "allauth",
     "allauth.account", 
     "allauth.socialaccount",
@@ -64,6 +65,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "Clothing_Store.urls"
+
+AUTH_USER_MODEL = 'NovaBazaar.User'
+swappable = "AUTH_USER_MODEL"
+
 
 TEMPLATES = [
     {
@@ -147,6 +152,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
