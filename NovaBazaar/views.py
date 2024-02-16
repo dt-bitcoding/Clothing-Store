@@ -55,17 +55,14 @@ def Userlogin(request):
         email = request.POST.get('email', '')
         Password = request.POST.get('Password', '')
 
-        user = authenticate(request, Email=email, Password=Password)
-        
+        user = authenticate(request, email=email, password=Password)
+        print("User ", user)
         if user is not None:
             login(request, user)
-            # return redirect('home.html')
-
-            if email != user.password:
-                raise forms.ValidationError("Passwords do not match")
+            return redirect('home.html')
         else:
             # return HttpResponse('Invalid login')
-            return redirect('home')
+            return redirect('login.html', "")
 
     else:
         form = Form()
@@ -145,3 +142,4 @@ def logout(request):
 
 def product(request):
     return render(request, 'NovaBazaar/product.html')
+
