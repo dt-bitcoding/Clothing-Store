@@ -44,17 +44,33 @@ def signup(request):
     return render(request, 'NovaBazaar/index.html', {'form': form})
 
 
+# def Userlogin(request):
+#     if request.method == 'POST':
+#         form = AuthenticationForm(request, data=request.POST)
+#         if form.is_valid():
+#             email = request.POST.get('email', '')
+#             Password = request.POST.get('Password', '')
+            
+#             user = authenticate(request, Email=email, Password=Password)
+#             if user:
+#                 login(request, user)
+#                 return redirect('home.html')  # Redirect to the home page after successful login
+#     else:
+#         form = Form()
+#     return render(request, 'NovaBazaar/login.html', {'form': form})
+
 def Userlogin(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            email = request.POST.get('email', '')
-            Password = request.POST.get('Password', '')
-            
-            user = authenticate(request, Email=email, Password=Password)
-            if user:
-                login(request, user)
-                return redirect('home.html')  # Redirect to the home page after successful login
+        email = request.POST['email']
+        Password = request.POST['Password']
+        user = authenticate(request, Email=email, Password=Password)
+        if user is not None:
+            login(request, user)
+            return redirect('home.html')
+        else:
+            # return HttpResponse('Invalid login')
+            return redirect('home')
+
     else:
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
@@ -62,7 +78,6 @@ def Userlogin(request):
 
 def success_view(request):
     return render(request, 'NovaBazaar/home.html')
-
 
 def pass_reset_form(request):  
     if request.method == "POST": 
@@ -108,5 +123,5 @@ def logout(request):
     return render(request, 'NovaBazaar/index.html')
 
 def product(request, pk):
-    product = Product.objects.get(id=pk)
+    product = product.objects.get(id=pk)
     return render(request, 'NovaBazaar/product.html', {'product': product})
