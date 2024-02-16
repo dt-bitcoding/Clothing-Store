@@ -9,7 +9,8 @@ from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import get_user_model
-
+from django.contrib import messages
+# from .forms import RegisterForm
 
 User = get_user_model()
 
@@ -52,9 +53,13 @@ def Userlogin(request):
         Password = request.POST.get('Password', '')
 
         user = authenticate(request, Email=email, Password=Password)
+        
         if user is not None:
             login(request, user)
             # return redirect('home.html')
+
+            if email != user.password:
+                raise forms.ValidationError("Passwords do not match")
         else:
             # return HttpResponse('Invalid login')
             return redirect('home')
@@ -64,25 +69,29 @@ def Userlogin(request):
     return render(request, 'NovaBazaar/login.html', {'form': form})
 
 # def Userlogin(request):
-#     if request.method == 'POST':
-#         email = request.POST.get('email', '')
-#         Password = request.POST.get('Password', '')
 
-#         user = authenticate(request, Email=email, Password=Password)
+    form = Form(request.POST or None)
 
-#         if user is not None:
-#             login(request, user)
-#             return redirect('home.html')
-#         else:
-           
-#             return render(request, 'login.html', {'error_message': 'Invalid login credentials'})
+    if form.is_valid():
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password")
 
-#     return render(request, 'login.html')
-
+        newUser = User(username=email)
+        newUser.email = email
+        newUser.set_password(password)
+        newUser.save()
+        login(request, newUser)
+        messages.success(request,"Successful on Register")
+        return redirect("home")
+    context = {
+        "form": form
+    }
+    return render(request, "NovaBazaar/login.html", context)
 
 
 def success_view(request):
     return render(request, 'NovaBazaar/home.html')
+
 
 def pass_reset_form(request):  
     if request.method == "POST": 
