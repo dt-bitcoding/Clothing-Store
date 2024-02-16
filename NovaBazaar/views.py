@@ -61,8 +61,10 @@ def signup(request):
 
 def Userlogin(request):
     if request.method == 'POST':
-        email = request.POST['email']
-        Password = request.POST['Password']
+        # email = request.POST['email']
+        # Password = request.POST['Password']
+        email = request.POST.get('email', '')
+        Password = request.POST.get('Password', '')
         user = authenticate(request, Email=email, Password=Password)
         if user is not None:
             login(request, user)
