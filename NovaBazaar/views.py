@@ -59,7 +59,7 @@ def Userlogin(request):
         print("User ", user)
         if user is not None:
             login(request, user)
-            return redirect('home.html')
+            return redirect('home')
         else:
             # return HttpResponse('Invalid login')
             return redirect('login.html', "")

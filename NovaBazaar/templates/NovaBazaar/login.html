@@ -82,13 +82,12 @@ body {
 
   </div>
 
-        <form action="" method="POST">{% csrf_token %}
-          
+        <form action="" method="POST">
+          {% csrf_token %}
         <div class="center">
           <div class="container signin">
 
-            <!-- <p style="margin-left:83%;">Create an account <a href="{% url 'logout' %}">Log Out</a>.</p> -->
-            <p style="margin-left:83%;">Create an account <a href="{% url 'home' %}">Log Out</a>.</p>
+            <!-- <p style="margin-left:83%;">Create an account <a href="{% url 'home' %}">Log Out</a>.</p> -->
           </div>
           <h1>User Can Login Here...</h1>
           
