@@ -41,16 +41,16 @@ class Form(forms.Form):
     email = forms.EmailField(max_length=100)
     Password = forms.CharField(max_length=100)
 
-    class Meta:
-        model = User
-        fields = ["email", "Password"]
+    # class Meta:
+    #     model = User
+    #     fields = ["email", "Password"]
 
-    def clean(self):
-        cleaned_data = super().clean()
-        email = cleaned_data.get("email")
-        password = cleaned_data.get("Password")
-        user = authenticate(email=email, password=password)
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     email = cleaned_data.get("email")
+    #     password = cleaned_data.get("Password")
+    #     user = authenticate(email=email, password=password)
          
-        if password != user.password:
-            raise forms.ValidationError("Passwords do not match")
+    #     if password != user.password:
+    #         raise forms.ValidationError("Passwords do not match")
         

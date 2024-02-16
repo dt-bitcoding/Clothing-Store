@@ -44,31 +44,17 @@ def signup(request):
     return render(request, 'NovaBazaar/index.html', {'form': form})
 
 
-# def Userlogin(request):
-#     if request.method == 'POST':
-#         form = AuthenticationForm(request, data=request.POST)
-#         if form.is_valid():
-#             email = request.POST.get('email', '')
-#             Password = request.POST.get('Password', '')
-            
-#             user = authenticate(request, Email=email, Password=Password)
-#             if user:
-#                 login(request, user)
-#                 return redirect('home.html')  # Redirect to the home page after successful login
-#     else:
-#         form = Form()
-#     return render(request, 'NovaBazaar/login.html', {'form': form})
-
 def Userlogin(request):
     if request.method == 'POST':
         # email = request.POST['email']
         # Password = request.POST['Password']
         email = request.POST.get('email', '')
         Password = request.POST.get('Password', '')
+
         user = authenticate(request, Email=email, Password=Password)
         if user is not None:
             login(request, user)
-            return redirect('home.html')
+            # return redirect('home.html')
         else:
             # return HttpResponse('Invalid login')
             return redirect('home')
@@ -76,6 +62,23 @@ def Userlogin(request):
     else:
         form = Form()
     return render(request, 'NovaBazaar/login.html', {'form': form})
+
+# def Userlogin(request):
+#     if request.method == 'POST':
+#         email = request.POST.get('email', '')
+#         Password = request.POST.get('Password', '')
+
+#         user = authenticate(request, Email=email, Password=Password)
+
+#         if user is not None:
+#             login(request, user)
+#             return redirect('home.html')
+#         else:
+           
+#             return render(request, 'login.html', {'error_message': 'Invalid login credentials'})
+
+#     return render(request, 'login.html')
+
 
 
 def success_view(request):
@@ -127,3 +130,4 @@ def logout(request):
 def product(request, pk):
     product = product.objects.get(id=pk)
     return render(request, 'NovaBazaar/product.html', {'product': product})
+
