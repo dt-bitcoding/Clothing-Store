@@ -10,7 +10,10 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-# from .forms import RegisterForm
+# from oscar.apps.catalogue.views import CatalogueView
+
+
+
 
 User = get_user_model()
 
@@ -136,7 +139,9 @@ def pass_reset_complete(request):
 def logout(request):
     return render(request, 'NovaBazaar/index.html')
 
-def product(request, pk):
-    product = product.objects.get(id=pk)
-    return render(request, 'NovaBazaar/product.html', {'product': product})
+# def product(request, pk):
+#     product = product.objects.get(id=pk)
+#     return render(request, 'NovaBazaar/product.html', {'product': product})
 
+def product(request):
+    return render(request, 'NovaBazaar/product.html')

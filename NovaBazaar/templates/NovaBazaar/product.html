@@ -1,14 +1,23 @@
-{% extends 'base.html' %}
-{% block content %}
- 
-    <div class="container">
-        <div class="row">
-            <center>
-                <div class="col-8">
-                    <br/><br/>
-                    <p align="justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat, facilis quas animi corporis eius nostrum accusantium sapiente maxime odit consequuntur in eaque mollitia rem! Asperiores commodi aliquam error eos?</p>
-                </div>
-            </center>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+</head>
+<body>
+    <h1>Product List</h1>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - ${{ product.price }}</li>
+        {% endfor %}
+
+        <!-- {% for product in products %}
+        <div>
+            <h2>{{ product.title }}</h2>
+            <p>{{ product.description }}</p>
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
         </div>
-    </div>
-{% endblock %}
+        {% endfor %} -->
+        
+    </ul>
+</body>
+</html>
