@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -65,30 +65,16 @@ body {
 
 </style>
     
-    </head>
-
-<body style="background-color:rgb(255, 253, 250);">
-  <div class="topnav">
-    <a href="{% url 'login' %}">Log In</a>
-    <a href="{% url 'contact' %}">Contact</a>
-    <a href="{% url 'about' %}">About</a>
-    <a href="{% url 'home' %}">Home</a>
-
-    <div class="box"> 
-      <div class="container-1"> 
-        <input type="search" id="search" placeholder="Search..."> 
-      </div> 
-  </div>
-
-  </div>
+</head>
 
         <form action="" method="POST">
           {% csrf_token %}
         <div class="center">
           <div class="container signin">
 
-            <!-- <p style="margin-left:83%;">Create an account <a href="{% url 'home' %}">Log Out</a>.</p> -->
-          </div>
+             <p style="margin-left:83%;">Create an account <a href="{% url 'home' %}">Log Out</a>.</p> -->
+
+          <!-- </div>
           <h1>User Can Login Here...</h1>
           
           <br>
@@ -97,13 +83,13 @@ body {
           
 
           <p>By Clicking Reset Your Password </p>
-          <!-- <h6>Forgot PassWord ? </h6> -->
+           <h6>Forgot PassWord ? </h6> 
           <p>Create an account <a href="{% url 'reset_password' %}">Forgot PassWord ? </a>.</p>
 
           <button type="submit">Submit</button>
 
-          <!-- <a href="{% url 'signup' %}">Sign up</a> -->
-          <b><p>New Customer..? </p></b>
+          <a href="{% url 'signup' %}">Sign up</a> -->
+          <!-- <b><p>New Customer..? </p></b>
           <button><a href="{% url 'signup' %}">Sign up</a></button>
 
 
@@ -113,4 +99,34 @@ body {
 
 
 </body>
-</html>
+</html>  -->
+
+
+{% extends 'NovaBazaar/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Login</h3>
+   <hr>
+   <form action="" method="post" novalidate class="shadow p-5">
+    <div class="mb-3">
+     <label for="exampleInputEmail1" class="form-label">Email</label>
+     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+     <label for="exampleInputPassword1" class="form-label">Password</label>
+     <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <small><a href="#">Forgot Password ?</a></small> <br>
+    <input type="submit" class="btn btn-primary mt-4" value="Login">
+    <br>
+    <div class="text-center text-primary fw-bold"><small>New to ShoppinglyX ? <a href="{% url 'customerregistration' %}"
+       class="text-danger">Create an Account</a> </small></div>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

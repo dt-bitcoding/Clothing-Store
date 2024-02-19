@@ -139,5 +139,31 @@ def logout(request):
 #     return render(request, 'NovaBazaar/product.html', {'product': product})
 
 def product_detail(request):
-    return render(request, 'NovaBazaar/product.html')
+    return render(request, 'NovaBazaar/productdetail.html')
 
+def add_to_cart(request):
+ return render(request, 'NovaBazaar/addtocart.html')
+
+def buy_now(request):
+ return render(request, 'NovaBazaar/buynow.html')
+
+def mobile(request):
+ return render(request, 'NovaBazaar/mobile.html')
+
+def profile(request):
+ return render(request, 'NovaBazaar/profile.html')
+
+def orders(request):
+ return render(request, 'NovaBazaar/orders.html')
+
+def change_password(request):
+ return render(request, 'NovaBazaar/changepassword.html')
+
+def customerregistration(request):
+ return render(request, 'NovaBazaar/customerregistration.html')
+
+def checkout(request):
+ return render(request, 'NovaBazaar/checkout.html')
+
+def address(request):
+ return render(request, 'NovaBazaar/address.html')
