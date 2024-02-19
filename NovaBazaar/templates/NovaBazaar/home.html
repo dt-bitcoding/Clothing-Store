@@ -4,8 +4,8 @@
 
 {% block banner_slider %}
 <!--Banner Slider-->
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
-  <div class="carousel-inner" style="margin-top: 4%;">
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="margin-left: 10%;">
+  <div class="carousel-inner" style="margin-top: 4%; width: 90%; height: 20%;">
     <div class="carousel-item active">
       <img src="{% static 'NovaBazaar/images/slider03.png' %}" class="d-block w-100" alt="...">
     </div>
@@ -16,12 +16,14 @@
       <img src="{% static 'NovaBazaar/images/sl03.png' %}" class="d-block w-100" alt="...">
     </div>
   </div>
+
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </a>
 </div>
