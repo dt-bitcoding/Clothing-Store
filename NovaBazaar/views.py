@@ -10,8 +10,6 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-# from oscar.apps.catalogue.views import CatalogueView
-
 
 
 
@@ -140,6 +138,6 @@ def logout(request):
 #     product = product.objects.get(id=pk)
 #     return render(request, 'NovaBazaar/product.html', {'product': product})
 
-def product(request):
+def product_detail(request):
     return render(request, 'NovaBazaar/product.html')
 
