@@ -4,6 +4,7 @@ from NovaBazaar.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate
 
+
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(
         max_length=254, help_text="Required. Enter a valid email address."
@@ -49,7 +50,6 @@ class Form(forms.Form):
     #     email = cleaned_data.get("email")
     #     password = cleaned_data.get("Password")
     #     user = authenticate(email=email, password=password)
-         
+
     #     if password != user.password:
     #         raise forms.ValidationError("Passwords do not match")
-        
