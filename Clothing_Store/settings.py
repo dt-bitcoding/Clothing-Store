@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # "allauth.socialaccount.providers.google",
     "crispy_forms",
     "widget_tweaks",
+    # "payments"
 
     # 'NovaBazaar.apps.NovabazaarConfig',
 ]
@@ -197,3 +198,7 @@ EMAIL_USE_SSL = False
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# PAYMENT_BACKENDS = ('payments.backends.dummy.DummyProvider',)
+# PAYMENT_MODEL = 'NovaBazaar.Payment'

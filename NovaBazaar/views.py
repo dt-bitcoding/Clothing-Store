@@ -238,7 +238,7 @@ def upload_form(request):
             
     else:
         context = {'form': ProductForm()}
-        return render(request, "NovaBazaar/home.html", context)
+        return render(request, "NovaBazaar/mobile.html", context)
     
     context = {'form': ProductForm()}
-    return render(request, "NovaBazaar/home.html", context)
+    return render(request, "NovaBazaar/mobile.html", context)

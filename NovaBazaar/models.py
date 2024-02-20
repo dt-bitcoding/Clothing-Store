@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from .manager import UserManager
-
+# from payments.models import BasePayment
 
 class User(AbstractUser):
     
@@ -78,3 +78,5 @@ class Search(models.Model):
     def __str__(self):
         return self.name
     
+# class Payment(BasePayment):
+#     order = models.ForeignKey(Order, on_delete=models.CASCADE)
