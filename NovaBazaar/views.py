@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
 
@@ -151,11 +151,30 @@ def logout(request):
 
 
 def product_detail(request):
+    # context = {
+    #     "product": "product",
+    # }
+    # return render(request, "NovaBazaar/productdetail.html", context)
     return render(request, "NovaBazaar/productdetail.html")
 
+@login_required
+def add_to_cart(request, id):
+    product = product.objects.get(id=id)
+    cart = cart(request)
+    cart.add(product=product)
+    return render(request, "NovaBazaar/addtocart.html", {"product": product})
 
-def add_to_cart(request):
-    return render(request, "NovaBazaar/addtocart.html")
+@login_required
+def remove_from_cart(request, id):
+    product = product.objects.get(id=id)
+    cart = cart(request)
+    cart.remove(product)
+    return render(request, "NovaBazaar/removefromcart.html", {"product": product})
+
+@login_required
+def cart_detail(request):
+    return render(request, "NovaBazaar/cartdetail.html")
+
 
 
 def buy_now(request):

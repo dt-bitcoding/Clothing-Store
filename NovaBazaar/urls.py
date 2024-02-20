@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
-from .views import success_view
-
+from .views import success_view, add_to_cart, remove_from_cart, cart_detail
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -22,7 +21,10 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("product_detail/", views.product_detail, name="product_detail"),
-    path("cart/", views.add_to_cart, name="add-to-cart"),
+    path('add-to-cart/', add_to_cart, name='add-to-cart'),
+    path("remove/<int:id>/", views.remove_from_cart, name="remove-from-cart"),
+    path("cart/", views.cart_detail, name="cart"),
+
     path("address/", views.address, name="address"),
     path("buy/", views.buy_now, name="buy-now"),
     path("mobile/", views.mobile, name="mobile"),
