@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import User
 from .forms import Form, MyForm
+from NovaBazaar.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django.core.mail import send_mail
@@ -191,7 +192,7 @@ def change_password(request):
     return render(request, "NovaBazaar/changepassword.html")
 
 
-def customerregistration(request):
+def customer_registration(request):
     if request.method == "POST":
         form = MyForm(request.POST)
         if form.is_valid():
@@ -206,7 +207,7 @@ def customerregistration(request):
                 return redirect("login")
     else:
         form = MyForm()
-    return render(request, "NovaBazaar/customerregistration.html", {"form": form})
+    return render(request, "NovaBazaar/customer_registration.html", {"form": form})
             
     # return render(request, "NovaBazaar/customerregistration.html")
 
@@ -228,3 +229,6 @@ def search_view(request):
     }
     return render(request, "NovaBazaar/search.html", context)
     
+def upload_form(request):
+    context = {'form': ProductForm()}
+    return render(request, "NovaBazaar/home.html", context)

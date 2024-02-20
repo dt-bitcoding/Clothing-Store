@@ -1,6 +1,7 @@
 from django import forms
+
 from django.core.exceptions import ValidationError
-from NovaBazaar.models import User
+from NovaBazaar.models import User, Product, Cart
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate
 
@@ -56,3 +57,8 @@ class Form(forms.Form):
 
 class AddToCartForm(forms.Form):
     quantity = forms.IntegerField(min_value=1, initial=1, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ["title", "selling_price", "discount_price", "description", "brand", "category", "product_image"]

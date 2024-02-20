@@ -31,6 +31,6 @@ urlpatterns = [
     path("orders/", views.orders, name="orders"),
     path("search/", views.search_view, name="search"),
     path("changepassword/", views.change_password, name="changepassword"),
-    path("registration/", views.customerregistration, name="customerregistration"),
+    path("registration/", views.customer_registration, name="customerregistration"),
     path("checkout/", views.checkout, name="checkout"),
 ]

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     # "allauth.socialaccount.providers.google",
     "crispy_forms",
+    "widget_tweaks",
 
     # 'NovaBazaar.apps.NovabazaarConfig',
 ]
@@ -153,10 +154,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
 STATIC_URL = "static/"
-MEDIA_URL = "/media/"
-# MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "static/NovaBazaar",
+
+]
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
