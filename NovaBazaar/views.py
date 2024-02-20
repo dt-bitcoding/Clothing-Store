@@ -158,18 +158,12 @@ def product_detail(request):
     return render(request, "NovaBazaar/productdetail.html")
 
 @login_required
-def add_to_cart(request, id):
-    product = product.objects.get(id=id)
-    cart = cart(request)
-    cart.add(product=product)
-    return render(request, "NovaBazaar/addtocart.html", {"product": product})
+def add_to_cart(request):
+    return render(request, "NovaBazaar/addtocart.html")
 
 @login_required
-def remove_from_cart(request, id):
-    product = product.objects.get(id=id)
-    cart = cart(request)
-    cart.remove(product)
-    return render(request, "NovaBazaar/removefromcart.html", {"product": product})
+def remove_from_cart(request):
+    return render(request, "NovaBazaar/removefromcart.html")
 
 @login_required
 def cart_detail(request):
@@ -198,7 +192,23 @@ def change_password(request):
 
 
 def customerregistration(request):
-    return render(request, "NovaBazaar/customerregistration.html")
+    if request.method == "POST":
+        form = MyForm(request.POST)
+        if form.is_valid():
+            email = request.POST.get("Email", "")
+            password = request.POST.get("Password", "")
+            confirmPassword = request.POST.get("Confirm_password", "")
+
+            if password != confirmPassword:
+                return HttpResponse("Password and Confirm Password not matched")
+            else:
+                form.save()
+                return redirect("login")
+    else:
+        form = MyForm()
+    return render(request, "NovaBazaar/customerregistration.html", {"form": form})
+            
+    # return render(request, "NovaBazaar/customerregistration.html")
 
 
 def checkout(request):
