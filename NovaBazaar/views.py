@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import User
 from .forms import Form, MyForm
-from NovaBazaar.models import User
+from NovaBazaar.models import User, Product
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django.core.mail import send_mail
@@ -12,6 +12,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from NovaBazaar.forms import ProductForm
 
 User = get_user_model()
 
@@ -230,5 +231,14 @@ def search_view(request):
     return render(request, "NovaBazaar/search.html", context)
     
 def upload_form(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            
+    else:
+        context = {'form': ProductForm()}
+        return render(request, "NovaBazaar/home.html", context)
+    
     context = {'form': ProductForm()}
     return render(request, "NovaBazaar/home.html", context)

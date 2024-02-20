@@ -33,4 +33,5 @@ urlpatterns = [
     path("changepassword/", views.change_password, name="changepassword"),
     path("registration/", views.customer_registration, name="customerregistration"),
     path("checkout/", views.checkout, name="checkout"),
+    path("uploadimg/", views.upload_form, name="uploadimg"),
 ]
