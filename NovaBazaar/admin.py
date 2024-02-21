@@ -24,4 +24,4 @@ class CartAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'name', 'location', 'city', 'zipcode', 'state')
+    list_display = ('id', 'user', 'name', 'address', 'city', 'state', 'zipcode')

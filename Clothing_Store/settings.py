@@ -42,17 +42,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "NovaBazaar",
+    'NovaBazaar',
     "rest_framework",
     "allauth",
     "allauth.account", 
     "allauth.socialaccount",
-    # "allauth.socialaccount.providers.google",
     "crispy_forms",
     "widget_tweaks",
-    # "payments"
 
-    # 'NovaBazaar.apps.NovabazaarConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +74,7 @@ swappable = "AUTH_USER_MODEL"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'NovaBazaar', 'templates')],
         'APP_DIRS': True,
         "OPTIONS": {
             "context_processors": [

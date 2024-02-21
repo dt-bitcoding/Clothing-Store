@@ -64,10 +64,10 @@ class Cart(models.Model):
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    location = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
-    zipcode = models.IntegerField()
     state = models.CharField(max_length=100)
+    zipcode = models.IntegerField()
     
     def __str__(self):
         return self.user.FirstName

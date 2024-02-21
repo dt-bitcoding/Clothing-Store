@@ -10,6 +10,8 @@ urlpatterns = [
     path("signup/success/", success_view, name="success"),
     path("loginuser", views.Userlogin, name="login"),
     path("logout/", views.logout, name="logout"),
+
+    # password reset urls for the user
     path("reset_password/", views.pass_reset_form, name="reset_password"),
     path(
         "password_reset_confirm/", views.pass_reset_confirm, name="pass_reset_confirm"
@@ -20,6 +22,9 @@ urlpatterns = [
         views.pass_reset_complete,
         name="password_reset_complete",
     ),
+    path("changepassword/", views.change_password, name="changepassword"),
+    # product related urls for the user
+
     path("product_detail/", views.product_detail, name="product_detail"),
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
     path("remove/<int:id>/", views.remove_from_cart, name="remove-from-cart"),
@@ -30,8 +35,10 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("orders/", views.orders, name="orders"),
     path("search/", views.search_view, name="search"),
-    path("changepassword/", views.change_password, name="changepassword"),
     path("registration/", views.customer_registration, name="customerregistration"),
     path("checkout/", views.checkout, name="checkout"),
     path("uploadimg/", views.upload_form, name="uploadimg"),
+
+    # payment urls
+    path("payment/", views.payment, name="payment"),
 ]

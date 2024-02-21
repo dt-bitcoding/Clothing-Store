@@ -13,6 +13,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from NovaBazaar.forms import ProductForm
+from flask import Flask
 
 User = get_user_model()
 
@@ -242,3 +243,9 @@ def upload_form(request):
     
     context = {'form': ProductForm()}
     return render(request, "NovaBazaar/mobile.html", context)
+
+NovaBazaar = Flask(__name__)
+
+@NovaBazaar.route('/payment', methods=['GET', 'POST'])
+def payment(request):
+    return render(request, "NovaBazaar/payment.html")
