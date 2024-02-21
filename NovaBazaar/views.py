@@ -1,8 +1,9 @@
+import uuid
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.urls import reverse
 from .models import User
-from .forms import Form, MyForm
-from NovaBazaar.models import User, Product
+from .forms import Form, MyForm, ProductForm, CustomerForm
+from NovaBazaar.models import User, Product, Customer
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django.core.mail import send_mail
@@ -14,6 +15,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from NovaBazaar.forms import ProductForm
 from flask import Flask
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+
 
 User = get_user_model()
 
@@ -183,7 +187,23 @@ def mobile(request):
 
 
 def profile(request):
-    return render(request, "NovaBazaar/profile.html")
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+
+            name = form.cleaned_data.get("name")
+            
+            address = form.cleaned_data.get("address")
+            city = form.cleaned_data.get("city")
+            state = form.cleaned_data.get("state")
+            zipcode = form.cleaned_data.get("zipcode")
+
+            reg = Customer(name=name, address=address, city=city, state=state, zipcode=zipcode)
+            reg.save()
+            form = CustomerForm()
+    else:
+        form = CustomerForm()
+    return render(request, "NovaBazaar/profile.html", {"form": form})
 
 
 def orders(request):
@@ -244,8 +264,30 @@ def upload_form(request):
     context = {'form': ProductForm()}
     return render(request, "NovaBazaar/mobile.html", context)
 
-NovaBazaar = Flask(__name__)
-
-@NovaBazaar.route('/payment', methods=['GET', 'POST'])
 def payment(request):
-    return render(request, "NovaBazaar/payment.html")
+    host = request.get_host()
+    paypal_dict = {
+        "business": settings.PAYPAL_RECEIVER_EMAIL,
+        "amount": "10000000.00",
+        "item_name": "name of the item",
+        "invoice": str(uuid.uuid4()),
+        "currency_code": "USD",
+        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "return_url": request.build_absolute_uri(reverse('payment_done')),
+        "cancel_return": request.build_absolute_uri(reverse('payment_cancelled')),
+        "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+
+    }
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    context = {"form": form}
+    return render(request, "NovaBazaar/payment.html", context)
+
+
+def paypal_return(request):
+    messages.success(request, "Payment was successful")
+    return redirect("home")
+
+def paypal_cancel(request):
+    messages.error(request, "Payment was cancelled")
+    return redirect("home")
+

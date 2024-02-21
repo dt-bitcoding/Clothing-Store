@@ -1,7 +1,7 @@
 from django import forms
 
 from django.core.exceptions import ValidationError
-from NovaBazaar.models import User, Product, Cart
+from NovaBazaar.models import User, Product, Customer
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate
 
@@ -37,23 +37,9 @@ class MyForm(forms.Form):
 
         return cleaned_data
 
-
 class Form(forms.Form):
     email = forms.EmailField(max_length=100)
     Password = forms.CharField(max_length=100)
-
-    # class Meta:
-    #     model = User
-    #     fields = ["email", "Password"]
-
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     email = cleaned_data.get("email")
-    #     password = cleaned_data.get("Password")
-    #     user = authenticate(email=email, password=password)
-
-    #     if password != user.password:
-    #         raise forms.ValidationError("Passwords do not match")
 
 class AddToCartForm(forms.Form):
     quantity = forms.IntegerField(min_value=1, initial=1, widget=forms.NumberInput(attrs={'class': 'form-control'}))
@@ -62,3 +48,9 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ["title", "selling_price", "discount_price", "description", "brand", "category", "product_image"]
+
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ["name", "address", "city", "state", "zipcode"]
+        

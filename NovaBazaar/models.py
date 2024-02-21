@@ -70,7 +70,7 @@ class Customer(models.Model):
     zipcode = models.IntegerField()
     
     def __str__(self):
-        return self.user.FirstName
+        return self.name
     
 class Search(models.Model):
     name = models.CharField(max_length=255)
@@ -78,5 +78,5 @@ class Search(models.Model):
     def __str__(self):
         return self.name
     
-# class Payment(BasePayment):
-#     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+class Payment(models.Model):
+    pass

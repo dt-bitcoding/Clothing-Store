@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "paypal.standard.ipn",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "crispy_forms",
     "widget_tweaks",
+    
 
 ]
 
@@ -197,5 +199,6 @@ EMAIL_USE_SSL = False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# PAYMENT_BACKENDS = ('payments.backends.dummy.DummyProvider',)
-# PAYMENT_MODEL = 'NovaBazaar.Payment'
+# Paypal settings
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = "dt.bitcoding@gmail.com"

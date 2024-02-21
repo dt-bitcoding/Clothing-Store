@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is Payment Pages</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {{ form.render }}
 </body>
 </html>
