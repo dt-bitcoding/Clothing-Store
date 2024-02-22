@@ -216,3 +216,125 @@ body {
         }
     }
 }
+
+/*-----------------------------
+Section: Social Media List
+----------------------------- */
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    margin-top: 5rem;
+    background: #111;
+}
+
+.social-menu {
+    display: flex;
+    justify-content: center;
+}
+
+.social-btn {
+    list-style: none;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    margin: 15px;
+    border-radius: 30%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 10px -5px rgb(255, 255, 255, 0.1);
+    transition: all 0.3s;
+    z-index: 10px;
+}
+
+.social-btn a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.social-btn:hover a {
+    color: #fff;
+}
+
+.social-menu .social-btn::before {
+    content: attr(tooltip);
+    position: absolute;
+    top: 0;
+    font-size: 0.9em;
+    font-weight: bold;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: auto;
+    background: #fff;
+    padding: 10px;
+    color: #000;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+}
+
+.social-menu .social-btn::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 0;
+    opacity: 0;
+    background: #fff;
+    transform: rotate(45deg);
+    left: 20%;
+    z-index: -2;
+    transition:
+        all 0.3s ease-out;
+}
+
+.social-menu .social-btn:hover::before {
+    top: -45px;
+    opacity: 1;
+}
+
+.social-btn:hover::after {
+    top: -12px;
+    opacity: 1;
+}
+
+.facebook a {
+    color: #3b5999;
+}
+
+.facebook:hover,
+.facebook:hover .social-btn:before,
+.facebook:hover .social-btn:after {
+    background: #3b5999;
+}
+
+.instagram a {
+    color: #962fbf;
+}
+
+.instagram:hover,
+.instagram:hover .social-btn:before,
+.instagram:hover .social-btn:after {
+    background: #962fbf;
+}
+
+.pinterest a {
+    color: #c8232c;
+}
+
+.pinterest:hover,
+.pinterest:hover .social-btn:before,
+.pinterest:hover .social-btn:after {
+    background: #c8232c;
+}
+
+.linkedin a {
+    color: #0072b1;
+}
+
+.linkedin:hover,
+.linkedin:hover .social-btn:before,
+.linkedin:hover .social-btn:after {
+    background: #0072b1;
+}
