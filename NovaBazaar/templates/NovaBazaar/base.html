@@ -19,7 +19,49 @@
 
   <!--Custom CSS-->
   <link rel="stylesheet" href="{% static 'NovaBazaar/css/style.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .fa {
+      padding: 20px;
+      font-size: 30px;
+      width: 60px;
+      text-align: center;
+      text-decoration: none;
+      margin: -50px 2px;
+      border-radius: 50%;
+    }
 
+    .fa:hover {
+      opacity: 0.7;
+    }
+
+    .fa-facebook {
+      background: #4267B2;
+      color: white;
+    }
+
+    .fa-instagram {
+      background: #E1306C;
+      color: white;
+    }
+
+    .fa-pinterest {
+      background: #cb2027;
+      color: white;
+    }
+
+    .fa-snapchat-ghost {
+      background: #fffc00;
+      color: white;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+    .fa-skype {
+      background: #00aff0;
+      color: white;
+    }
+  </style>
 
   <title>Clothing Store | {% block title %} {% endblock title %} </title>
 </head>
@@ -79,7 +121,8 @@
             </li>
             <li class="nav-item mx-2">
               <!-- <a href="{% url 'add-to-cart' %}" class="nav-link text-white"><span class="badge bg-danger">2</span> Cart</a> -->
-              <a href="{% url 'add-to-cart' %}" class="nav-link text-white"><span class="badge bg-danger"></span> Cart</a>
+              <a href="{% url 'add-to-cart' %}" class="nav-link text-white"><span class="badge bg-danger"></span>
+                Cart</a>
 
             </li>
             <li class="nav-item mx-2">
@@ -98,7 +141,13 @@
   {% block main-content %} {% endblock main-content %}
 
   <!-- Start Footer -->
+  <a href="https://www.facebook.com/Bitcodings" class="fa fa-facebook"></a>
+  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-instagram"></a>
+  <a href="https://twitter.com/bitcodings" class="fa fa-pinterest"></a>
+  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-snapchat-ghost"></a>
+  <a href="https://twitter.com/bitcodings" class="fa fa-skype"></a>
   <footer class="container-fluid bg-dark text-center p-2 mt-5">
+
     <small class="text-white">Copyright &copy; 2021 || Designed By Bitcoding Solutions || </small>
     <img src="{% static 'NovaBazaar/images/payment.png' %}" alt="" srcset="" class="img-fluid" height="2px">
   </footer> <!-- End Footer -->
