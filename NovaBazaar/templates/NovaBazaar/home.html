@@ -51,24 +51,30 @@
   <h2 style="text-align: center; background-color: aqua;">French Crown for kings</h2>
   <!-- Slider 1 -->
   <div class="center" id="slider1">
-    <a href="{% url 'product_detail' id=1 %}" class="btn">
+    <ul class="mystyle-products">
+      <li class="product">
+        <a href="{% url 'add-to-cart' %}">
+          <span class="onsale">Sale!</span>
+          <a href="{% url 'product_detail' id=1 %}" class="btn">
 
-      <div class="item"><img src="{% static 'NovaBazaar/images/dress-shirt-img.png' %}" alt=""><br><span
-          class="fw-bold">Product
-          1</span><br><span class="fs-5">Rs. 500</span></div>
-    </a>
+            <div class="item"><img src="{% static 'NovaBazaar/images/dress-shirt-img.png' %}" alt=""><br><span
+                class="fw-bold">Product
+                1</span><br><span class="fs-5">Rs. 500</span></div>
+          </a>
 
-    <a href="{% url 'product_detail' id=1 %}" class="btn">
-      <div class="item"><img src="{% static 'NovaBazaar/images/mobile-img.png' %}" alt=""><br><span
-          class="fw-bold">Product
-          2</span><br><span class="fs-5">Rs. 300</span></div>
-    </a>
+          <a href="{% url 'product_detail' id=1 %}" class="btn">
+            <div class="item"><img src="{% static 'NovaBazaar/images/mobile-img.png' %}" alt=""><br><span
+                class="fw-bold">Product
+                2</span><br><span class="fs-5">Rs. 300</span></div>
+          </a>
 
-    <a href="{% url 'product_detail' id=1 %}" class="btn">
-      <div class="item"><img src="{% static 'NovaBazaar/images/tshirt-img.png' %}" alt=""><br><span
-          class="fw-bold">Product
-          3</span><br><span class="fs-5">Rs. 100</span></div>
-    </a>
+          <a href="{% url 'product_detail' id=1 %}" class="btn">
+            <div class="item"><img src="{% static 'NovaBazaar/images/tshirt-img.png' %}" alt=""><br><span
+                class="fw-bold">Product
+                3</span><br><span class="fs-5">Rs. 100</span></div>
+          </a>
+        </a>
+      </li>
   </div>
 </div>
 <!-- End 1st Product Slider -->
