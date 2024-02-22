@@ -16,6 +16,7 @@
         <form action="{% url 'profile' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        
         <!-- <div class="col-12">
           <label for="inputName" class="form-label">Name</label>
           <input type="text" class="form-control" id="inputEmail">
@@ -76,10 +77,12 @@
         <div class="col-md-2">
           <label for="inputZip" class="form-label">Zipcode</label>
           <input type="text" class="form-control" id="inputZip">
-        </div>-->
+        </div> -->
+
         <div class="col-12 mt-3">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div> 
+
       </form>
     </div>
   </div>

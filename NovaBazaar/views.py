@@ -19,19 +19,17 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 from django.http import HttpResponse
 
-# ... rest of your imports and code ...
-
 
 User = get_user_model()
 
 
 def home(request):
-    return render(request, "NovaBazaar/home.html")
+    products = Product.objects.all()
+    return render(request, "NovaBazaar/home.html", {"products": products})
 
 
 def contact(request):
     return render(request, "NovaBazaar/contact.html")
-
 
 def about(request):
     return render(request, "NovaBazaar/about.html")
@@ -155,9 +153,22 @@ def logout(request):
     return render(request, "NovaBazaar/index.html")
 
 
-def product_detail(request):
-    return render(request, "NovaBazaar/productdetail.html")
+def product_detail(request, id):
+    return render(request, "NovaBazaar/productdetail.html", {"id": id})
 
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            
+            form.save()
+            return redirect('home') 
+    else:
+        form = ProductForm()
+
+    return render(request, 'NovaBazaar/add_product.html', {'form': form})
+
+    # return render(request, "NovaBazaar/add_product.html")
 
 @login_required
 def add_to_cart(request):
@@ -165,8 +176,12 @@ def add_to_cart(request):
 
 
 @login_required
-def remove_from_cart(request):
-    return render(request, "NovaBazaar/removefromcart.html")
+def remove_from_cart(request, id):
+    print("ID ", id)
+    # cart = cart.objects.get(id=id, user=request.user)
+    # cart.delete()
+    return redirect("home")
+    # return render(request, "NovaBazaar/removefromcart.html", {"id": id})
 
 
 @login_required

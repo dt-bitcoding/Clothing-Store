@@ -24,8 +24,10 @@ urlpatterns = [
     ),
     path("changepassword/", views.change_password, name="changepassword"),
     # product related urls for the user
+    path("add_product/", views.add_product, name="add_product"),
 
-    path("product_detail/", views.product_detail, name="product_detail"),
+    path("product_detail/<int:id>", views.product_detail, name="product_detail"),
+    
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
     path("remove/<int:id>/", views.remove_from_cart, name="remove-from-cart"),
     path("cart/", views.cart_detail, name="cart"),
