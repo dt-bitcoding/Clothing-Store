@@ -12,7 +12,8 @@
       </ul>
     </div>
     <div class="col-sm-8 offset-sm-1">
-      <form action="" method="post">
+
+        <form action="{% url 'profile' %}" method="post">
         {% csrf_token %}
         <div class="col-12">
           <label for="inputName" class="form-label">Name</label>
@@ -72,7 +73,7 @@
           </select>
         </div>
         <div class="col-md-2">
-          <label for="inputZip" class="form-label">Zip</label>
+          <label for="inputZip" class="form-label">Zipcode</label>
           <input type="text" class="form-control" id="inputZip">
         </div>
         <div class="col-12 mt-3">

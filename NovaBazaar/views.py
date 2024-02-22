@@ -17,6 +17,9 @@ from NovaBazaar.forms import ProductForm
 from flask import Flask
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
+from django.http import HttpResponse
+
+# ... rest of your imports and code ...
 
 
 User = get_user_model()
@@ -187,24 +190,25 @@ def mobile(request):
 
 
 def profile(request):
-    if request.method == "POST":
-        form = CustomerForm(request.POST)
-        if form.is_valid():
-
-            name = form.cleaned_data.get("name")
-            
-            address = form.cleaned_data.get("address")
-            city = form.cleaned_data.get("city")
-            state = form.cleaned_data.get("state")
-            zipcode = form.cleaned_data.get("zipcode")
-
+    if request.method == 'POST':
+        fm = CustomerForm(request.POST)
+        
+        if fm.is_valid():
+            print("#########################")
+            name = fm.cleaned_data['name'],
+            address = fm.cleaned_data['address'],
+            city = fm.cleaned_data['city'],
+            state = fm.cleaned_data['state'],
+            zipcode = fm.cleaned_data['zipcode'],
             reg = Customer(name=name, address=address, city=city, state=state, zipcode=zipcode)
             reg.save()
-            form = CustomerForm()
+            fm = CustomerForm()
     else:
-        form = CustomerForm()
-    return render(request, "NovaBazaar/profile.html", {"form": form})
+        fm = CustomerForm()
+    stud = Customer.objects.all()
+    return render(request, 'NovaBazaar/profile.html', {'form': fm, 'stu': stud})
 
+    # return render(request, 'NovaBazaar/profile.html', {'form': form})
 
 def orders(request):
     return render(request, "NovaBazaar/orders.html")
