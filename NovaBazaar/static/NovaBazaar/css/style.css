@@ -1,3 +1,30 @@
+.owl-carousel .item {
+    /* border: 1px solid black; */
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    ;
+}
+
+.owl-next {
+    float: right;
+}
+
+.owl-prev {
+    float: left;
+}
+
+.owl-prev span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.owl-next span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
 /*-----------------------------
 Section: Products List
 ----------------------------- */
@@ -38,7 +65,7 @@ body {
     }
 
     .product {
-        width: 25%;
+        width: 100%;
         margin-bottom: 20px;
         position: relative;
         padding: 20px;
