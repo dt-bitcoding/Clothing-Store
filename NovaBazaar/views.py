@@ -155,30 +155,23 @@ def logout(request):
     return render(request, "NovaBazaar/index.html")
 
 
-# def product(request, pk):
-#     product = product.objects.get(id=pk)
-#     return render(request, 'NovaBazaar/product.html', {'product': product})
-
-
 def product_detail(request):
-    # context = {
-    #     "product": "product",
-    # }
-    # return render(request, "NovaBazaar/productdetail.html", context)
     return render(request, "NovaBazaar/productdetail.html")
+
 
 @login_required
 def add_to_cart(request):
     return render(request, "NovaBazaar/addtocart.html")
 
+
 @login_required
 def remove_from_cart(request):
     return render(request, "NovaBazaar/removefromcart.html")
 
+
 @login_required
 def cart_detail(request):
     return render(request, "NovaBazaar/cartdetail.html")
-
 
 
 def buy_now(request):
@@ -188,27 +181,38 @@ def buy_now(request):
 def mobile(request):
     return render(request, "NovaBazaar/mobile.html")
 
+@login_required
+# def profile(request):
+#     if request.method == "POST":
+#         form = CustomerForm(request.POST)
+#         if form.is_valid():
+#             name = request.POST.get("name")
+#             address = request.POST.get("address")
+#             city = request.POST.get("city")
+#             state = request.POST.get("state")
+#             zipcode = request.POST.get("zipcode")
+#             form = Customer(
+#                 name=name, address=address, city=city, state=state, zipcode=zipcode
+#             )
+#             form.save()
+#             return redirect("home")
+#     else:
+#         form = CustomerForm()
+#     return render(request, "NovaBazaar/profile.html", {"form": form})
 
 def profile(request):
     if request.method == 'POST':
-        fm = CustomerForm(request.POST)
-        
-        if fm.is_valid():
-            print("#########################")
-            name = fm.cleaned_data['name'],
-            address = fm.cleaned_data['address'],
-            city = fm.cleaned_data['city'],
-            state = fm.cleaned_data['state'],
-            zipcode = fm.cleaned_data['zipcode'],
-            reg = Customer(name=name, address=address, city=city, state=state, zipcode=zipcode)
-            reg.save()
-            fm = CustomerForm()
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user_id = request.user.id
+            profile.save()
+            
     else:
-        fm = CustomerForm()
-    stud = Customer.objects.all()
-    return render(request, 'NovaBazaar/profile.html', {'form': fm, 'stu': stud})
+        form = CustomerForm()
 
-    # return render(request, 'NovaBazaar/profile.html', {'form': form})
+    return render(request, 'NovaBazaar/profile.html', {'form': form})
+
 
 def orders(request):
     return render(request, "NovaBazaar/orders.html")
@@ -234,8 +238,6 @@ def customer_registration(request):
     else:
         form = MyForm()
     return render(request, "NovaBazaar/customer_registration.html", {"form": form})
-            
-    # return render(request, "NovaBazaar/customerregistration.html")
 
 
 def checkout(request):
@@ -245,28 +247,27 @@ def checkout(request):
 def address(request):
     return render(request, "NovaBazaar/address.html")
 
-def search_view(request):
-    query = request.GET.get('q')
-    results = User.objects.filter(FirstName__icontains=query)
-    context = {
-        'query': query,
-        'results': results
 
-    }
+def search_view(request):
+    query = request.GET.get("q")
+    results = User.objects.filter(FirstName__icontains=query)
+    context = {"query": query, "results": results}
     return render(request, "NovaBazaar/search.html", context)
-    
+
+
 def upload_form(request):
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            
+
     else:
-        context = {'form': ProductForm()}
+        context = {"form": ProductForm()}
         return render(request, "NovaBazaar/mobile.html", context)
-    
-    context = {'form': ProductForm()}
+
+    context = {"form": ProductForm()}
     return render(request, "NovaBazaar/mobile.html", context)
+
 
 def payment(request):
     host = request.get_host()
@@ -276,11 +277,10 @@ def payment(request):
         "item_name": "name of the item",
         "invoice": str(uuid.uuid4()),
         "currency_code": "USD",
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        "return_url": request.build_absolute_uri(reverse('payment_done')),
-        "cancel_return": request.build_absolute_uri(reverse('payment_cancelled')),
+        "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
+        "return_url": request.build_absolute_uri(reverse("payment_done")),
+        "cancel_return": request.build_absolute_uri(reverse("payment_cancelled")),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
-
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {"form": form}
@@ -291,7 +291,7 @@ def paypal_return(request):
     messages.success(request, "Payment was successful")
     return redirect("home")
 
+
 def paypal_cancel(request):
     messages.error(request, "Payment was cancelled")
     return redirect("home")
-
