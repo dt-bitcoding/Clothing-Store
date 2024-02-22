@@ -25,6 +25,7 @@ User = get_user_model()
 
 def home(request):
     products = Product.objects.all()
+    
     return render(request, "NovaBazaar/home.html", {"products": products})
 
 
@@ -235,7 +236,6 @@ def orders(request):
 
 def change_password(request):
     return render(request, "NovaBazaar/changepassword.html")
-
 
 def customer_registration(request):
     if request.method == "POST":

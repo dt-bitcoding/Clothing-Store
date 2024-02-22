@@ -125,7 +125,8 @@
 
 <div class="row">
   {% for product in products %}
-  <img src="{{ products.image.url }}" class="card-img-top" alt="...">
+
+  <img src="{{ product.product_image.url }}">
   <div class="col-md-4 card card-body p-3">
     <h5 class="card-title">{{ product.title }}</h5>
     <p class="card-text">{{ product.selling_price }}</p>
@@ -133,9 +134,10 @@
     <p class="card-text">{{ product.description }}</p>
     <p class="card-text">{{ product.brand }}</p>
     <p class="card-text">{{ product.category }}</p>
-    <p class="card-text">{{ product.product_image }}</p>
+    <!-- <p class="card-text"><a href="{% url 'product_detail' product.id %}">View Product</a>{{ product.product_image }}</p> -->
 
-    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Product</a>
+    <!-- <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Product</a> -->
+    <!-- <a href="{% url 'product_detail' product.id %}">View Product</a> -->
   </div>
   {% endfor %}
 </div>
