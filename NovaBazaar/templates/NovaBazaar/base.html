@@ -61,6 +61,32 @@
       background: #00aff0;
       color: white;
     }
+
+    /* Scroll button bottom to top */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+    }
+
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 97%;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: rgb(255, 0, 0);
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 4px;
+    }
+
+    #myBtn:hover {
+      background-color: #555;
+    }
   </style>
 
   <title>Clothing Store | {% block title %} {% endblock title %} </title>
@@ -142,12 +168,34 @@
 
   <!-- Start Footer -->
   <a href="https://www.facebook.com/Bitcodings" class="fa fa-facebook"></a>
-  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-instagram"></a> 
+  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-instagram"></a>
   <a href="https://twitter.com/bitcodings" class="fa fa-pinterest"></a>
-  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-snapchat-ghost"></a> 
+  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-snapchat-ghost"></a>
 
 
-  
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  <script>
+    // Get the button
+    let mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
   <footer class="container-fluid bg-dark text-center p-2 mt-5">
 
     <small class="text-white">Copyright &copy; 2021 || Designed By Bitcoding Solutions || </small>
@@ -165,6 +213,8 @@
   <script src="{% static 'NovaBazaar/js/owl.carousel.min.js' %}"></script>
   <script src="{% static 'NovaBazaar/js/all.min.js' %}"></script>
   <script src="{% static 'NovaBazaar/js/myscript.js' %}"></script>
+
+
 </body>
 
 </html>
