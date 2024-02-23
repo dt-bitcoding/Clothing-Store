@@ -69,21 +69,24 @@ def signup(request):
 
 def Userlogin(request):
     if request.method == "POST":
+        
         email = request.POST.get("email", "")
         Password = request.POST.get("Password", "")
         user = authenticate(request, email=email, password=Password)
         print("User ", user)
         if user is not None:
+            print("user: user")
             login(request, user)
             return redirect("home")
         else:
-            return redirect("login")
+            return HttpResponse("Please correct Informaton")
     else:
         form = Form()
     return render(request, "NovaBazaar/login.html", {"form": form})
 
 def success_view(request):
     return render(request, "NovaBazaar/home.html")
+
 
 def pass_reset_form(request):
     if request.method == "POST":
@@ -116,14 +119,18 @@ def pass_reset_form(request):
         form = PasswordResetForm()
     return render(request, "NovaBazaar/pass_reset_form.html", {"form": form})
 
+
 def pass_reset_confirm(request):
     return render(request, "NovaBazaar/pass_reset_confirm.html")
+
 
 def pass_reset_done(request):
     return render(request, "NovaBazaar/pass_reset_done.html")
 
+
 def pass_reset_complete(request):
     return render(request, "NovaBazaar/pass_reset_complete.html")
+
 
 def logout(request):
     return render(request, "NovaBazaar/index.html")
