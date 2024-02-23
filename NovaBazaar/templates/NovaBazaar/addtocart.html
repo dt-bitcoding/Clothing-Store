@@ -9,7 +9,16 @@
       <div class="card">
         <div class="card-body">
           <h3>Cart</h3>
-          <div class="row">
+          <title>{{ product.name }}</title>
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="card-text">{{ product.selling_price }}</p>
+          <p class="card-text">{{ product.discount_price }}</p>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">{{ product.brand }}</p>
+
+
+
+          <!-- <div class="row">
             <div class="col-sm-3 text-center align-self-center"><img src="{% static 'NovaBazaar/images/dress-shirt-img.png'%}" alt=""
                 srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
             <div class="col-sm-9">
@@ -30,9 +39,11 @@
                 </div>
               </div>
             </div>
-          </div>
-          <hr class="text-muted">
-          <div class="row my-5">
+          </div> -->
+
+          <!-- <hr class="text-muted"> -->
+
+          <!-- <div class="row my-5">
             <div class="col-sm-3 text-center align-self-center"> <img src="{% static 'NovaBazaar/images/tshirt-img.png'%}"
                 alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></div>
             <div class="col-sm-9">
@@ -53,7 +64,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -78,25 +89,25 @@
         </div>
       </div>
     </div>
-    
+
   </div>
-    
-          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="float: right; margin-right: 450px; margin-top: 5px;">Checkout</button> -->
-          
+
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="float: right; margin-right: 450px; margin-top: 5px;">Checkout</button> -->
+
 </div>
 
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-sm-8">
       <div class="card">
         <div class="card-body">
           <h5 class="mb-4">We accept</h5>
-          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="float: right;">Checkout</button> -->
-          <!-- <img src="{% static 'NovaBazaar/images/payment.png' %}" alt="" class="img-fluid"> -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="float: right;">Checkout</button>
+          <img src="{% static 'NovaBazaar/images/payment.png' %}" alt="" class="img-fluid">
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 {% endblock main-content %}

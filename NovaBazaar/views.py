@@ -18,6 +18,7 @@ from flask import Flask
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 
 User = get_user_model()
@@ -162,8 +163,10 @@ def add_product(request):
     # return render(request, "NovaBazaar/add_product.html")
 
 @login_required
-def add_to_cart(request):
-    return render(request, "NovaBazaar/addtocart.html")
+def add_to_cart(request, id):
+    product = get_object_or_404(Product, pk=id)
+    return render(request, "NovaBazaar/addtocart.html", {'product': product})
+    # return HttpResponse(f'Product added to cart: {product.name}')
 
 @login_required
 def remove_from_cart(request, id):
