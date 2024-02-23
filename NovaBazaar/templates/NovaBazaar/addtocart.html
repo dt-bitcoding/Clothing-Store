@@ -11,45 +11,11 @@
       <div class="card">
         <div class="card-body">
           <h3>Cart</h3>
-          <title>{{ product.name }}</title>
-          <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
-            style="width: 200px; height: 200px;">
-          <h5 class="card-title">{{ product.title }}</h5>
-          <p class="card-text">{{ product.selling_price }}</p>
-          <p class="card-text">{{ product.discount_price }}</p>
-          <p class="card-text">{{ product.description }}</p>
-          <p class="card-text">{{ product.brand }}</p>
-          <p class="card-text">{{ product.category }}</p>
 
-
-          <!-- <div class="row">
-            <div class="col-sm-3 text-center align-self-center"><img src="{% static 'NovaBazaar/images/dress-shirt-img.png'%}" alt=""
-                srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
-            <div class="col-sm-9">
-              <div>
-                <h5>Product 1</h5>
-                <p class="mb-2 text-muted small">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Rerum quas, nihil vel velit sed, quos consequatur maiores odio libero eius est in mollitia quo minus
-                  dolorum culpa consectetur, ipsam unde!</p>
-                <div class="my-3">
-                  <label for="quantity">Quantity:</label>
-                  <a class="minus-cart btn"><i class="fas fa-minus-square fa-lg"></i></a>
-                  <span id="quantity">3</span>
-                  <a class="plus-cart btn"><i class="fas fa-plus-square fa-lg"></i></a>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <a href="{% url 'home' %}" class="btn btn-sm btn-secondary mr-3">Remove item </a>
-                  <p class="mb-0"><span><strong>Rs. 110.00</strong></span></p>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <hr class="text-muted"> -->
-
-          <!-- <div class="row my-5">
-            <div class="col-sm-3 text-center align-self-center"> <img src="{% static 'NovaBazaar/images/tshirt-img.png'%}"
-                alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></div>
+          <div class="row my-5">
+            <div class="col-sm-3 text-center align-self-center"> <img
+                src="{% static 'NovaBazaar/images/tshirt-img.png'%}" alt="" srcset=""
+                class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></div>
             <div class="col-sm-9">
               <div>
                 <h5>Product 2</h5>
@@ -68,7 +34,19 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
+
+          <title>{{ product.name }}</title>
+          <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
+            style="width: 150px; height: 150px;">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="card-text">{{ product.selling_price }}</p>
+          <p class="card-text">{{ product.discount_price }}</p>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">{{ product.brand }}</p>
+          <p class="card-text">{{ product.category }}</p>
+
+
         </div>
       </div>
     </div>

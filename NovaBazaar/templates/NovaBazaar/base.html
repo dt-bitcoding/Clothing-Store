@@ -25,11 +25,11 @@
     .fa {
       padding: 30px;
       font-size: 30px;
-      width: 30px;
-      text-align: center;
+      width: 20px;
+      text-align: left;
       text-decoration: none;
-      margin: 75px 15px;
-      border-radius: 100%;
+      margin: 65px 17px;
+      border-radius: 50%;
     }
 
     .fa:hover {
@@ -108,11 +108,12 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="electronicsDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
-              Electronics
+              category
             </a>
             <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
-              <li><a class="dropdown-item" href="{% url 'mobile' %}">Mobile</a></li>
-              <li><a class="dropdown-item" href="#">Laptop</a></li>
+              {% for category in category %}
+              <li><a class="dropdown-item" href="{% url 'category' %}?id={{category.id}}">{{category.name}}</a></li>
+              {% endfor %}
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -146,11 +147,8 @@
               </ul>
             </li>
             <li class="nav-item mx-2">
-              <!-- <a href="{% url 'add-to-cart' id=4 %}" class="nav-link text-white"><span class="badge bg-danger">2</span> Cart</a> -->
-              <!-- <a href="{% url 'add-to-cart' id=4 %}" class="nav-link text-white"><span class="badge bg-danger"></span> -->
-              <a href="{% url 'add-to-cart' id=4 %}" class="nav-link text-white"><span class="badge bg-danger">2</span> Cart</a>
 
-                Cart</a>
+              <a href="{% url 'add-to-cart' id=4 %}" class="nav-link text-white"><span class="badge bg-danger">2</span> Cart</a>
 
             </li>
             <li class="nav-item mx-2">
@@ -176,6 +174,12 @@
 
 
   <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  <!-- <button class="css-185tk8p">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+      <path fill="#999" fill-rule="evenodd"
+        d="M19.737 11.158H7.888l3.849-3.849-1.263-1.263L4.52 12l5.954 5.954 1.263-1.263-3.849-3.849h11.849z"></path>
+    </svg>
+  </button> -->
   <script>
     // Get the button
     let mybutton = document.getElementById("myBtn");
@@ -214,9 +218,9 @@
 
   <script src="{% static 'NovaBazaar/js/owl.carousel.min.js' %}"></script>
   <script src="{% static 'NovaBazaar/js/all.min.js' %}"></script>
-  <script src="{% static 'NovaBazaar/js/myscript.js' %}"></script>
 
 
 </body>
 
 </html>
+

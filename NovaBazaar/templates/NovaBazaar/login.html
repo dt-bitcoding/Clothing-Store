@@ -9,21 +9,22 @@
       <hr>
       <form action="" style="background-color: rgb(255, 186, 83);" method="post" novalidate class="shadow p-5">
         {% csrf_token %}
-        <div class="mb-3">
+        {{form.as_p}}
+
+        <!-- <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
+          <input type="password" class="form-control" id="exampleInputPassword1" required>
+        </div> -->
+
         <small><a href="{% url 'reset_password' %}">Forgot Password ?</a></small> <br>
-        <!-- <input type="submit" class="btn btn-primary mt-4" value="Login"> -->
-        <!-- <a href="{% url 'login' %}">Submit</a> -->
-        <button style="background-color: rgb(0, 0, 0);"><a href="{% url 'home' %}">Submit</a></button>
+        <button>Log In</button>
         <br>
-        <div class="text-center text-primary fw-bold"><small>New to Clothing Store ? <a href="{% url 'customerregistration' %}"
-              class="text-danger">Create an Account</a> </small></div>
+        <div class="text-center text-primary fw-bold"><small>New to Clothing Store ? <a
+              href="{% url 'customerregistration' %}" class="text-danger">Create an Account</a> </small></div>
       </form>
     </div>
   </div>

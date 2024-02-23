@@ -156,16 +156,18 @@ USE_TZ = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
-STATIC_URL = "static/"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+print(STATIC_ROOT)
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
 #     BASE_DIR / "static/NovaBazaar",
 
 # ]
-STATICFILES_DIRS = [
-    '/home/vivek/Documents/Clothing-Store/static',
-    '/home/vivek/Documents/Clothing-Store/static/NovaBazaar',
-]
+# STATICFILES_DIRS = [
+#     '/home/vivek/Documents/Clothing-Store/static',
+#     '/home/vivek/Documents/Clothing-Store/static/NovaBazaar',
+# ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True

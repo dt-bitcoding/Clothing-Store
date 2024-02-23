@@ -20,54 +20,27 @@
         {% for obj in my_model_objects %}
         <img src="{% url 'mobile' %}" alt="Image">
         {% endfor %}
-        
+
         <h2 class="sr-only">Branded Clothes....</h2>
 
         <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {% for product in products %}
             <a href="#" class="group">
                 <div
                     class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                    <img src="{% static 'NovaBazaar/images/dress-shirt-img.png' %}"
+                    <!-- <img src="{% static 'NovaBazaar/images/dress-shirt-img.png' %}"
                         alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-                        class="h-full w-full object-cover object-center group-hover:opacity-75">
+                        class="h-full w-full object-cover object-center group-hover:opacity-75"> -->
+                    <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
+                        style="width: 200px; height: 200px;">
                 </div>
-                <h3 class="mt-4 text-sm text-gray-700">Tommy Hillfiger</h3>
-                <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
+                <h3 class="mt-4 text-sm text-gray-700">{{product.title}}</h3>
+                <p class="card-text">{{ product.selling_price }}</p>
+                <p class="mt-1 text-lg font-medium text-gray-900"></p>
             </a>
-            <a href="#" class="group">
-                <div
-                    class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                    <img src="{% static 'NovaBazaar/images/jeans02.jpg' %}"
-                        alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                        class="h-full w-full object-cover object-center group-hover:opacity-75">
-                </div>
-                <h3 class="mt-4 text-sm text-gray-700">pepe Jeans</h3>
-                <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
-            </a>
-            <a href="#" class="group">
-                <div
-                    class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                    <img src="{% static 'NovaBazaar/images/tshirt-img.png' %}"
-                        alt="Person using a pen to cross a task off a productivity paper card."
-                        class="h-full w-full object-cover object-center group-hover:opacity-75">
-                </div>
-                <h3 class="mt-4 text-sm text-gray-700">Being Human</h3>
-                <p class="mt-1 text-lg font-medium text-gray-900">$89</p>
-            </a>
-            <a href="#" class="group">
-                <div
-                    class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                    <img src="{% static 'NovaBazaar/images/women-clothes-img.png' %}"
-                        alt="Hand holding black machined steel mechanical pencil with brass tip and top."
-                        class="h-full w-full object-cover object-center group-hover:opacity-75">
-                </div>
-                <h3 class="mt-4 text-sm text-gray-700">Lacoste</h3>
-                <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
-            </a>
-
+            {% endfor %}
             <!-- More products... -->
         </div>
     </div>
 </div>
 {% endblock main-content %}
-
