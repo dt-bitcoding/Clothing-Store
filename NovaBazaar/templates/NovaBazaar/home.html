@@ -54,7 +54,7 @@
   <div class="center" id="slider1">
     <ul class="mystyle-products">
       <li class="product">
-        <a href="{% url 'add-to-cart' id=1 %}">
+        <a href="{% url 'add-to-cart' id=4 %}">
           <span class="onsale">Sale!</span>
           <a href="{% url 'product_detail' id=1 %}" class="btn">
 
@@ -93,7 +93,7 @@
   <div class="col-md-3 card card-body p-3">
     <ul class="mystyle-products">
       <li class="product">
-        <a href="{% url 'add-to-cart' id=1 %}">
+        <a href="{% url 'add-to-cart' id=product.id  %}">
           <span class="onsale">Sale!</span>
           <!-- <img alt="" class="attachment-shop_catalog " src="{% static 'NovaBazaar/images/tshirt-img.png' %}" /> -->
           <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
@@ -103,7 +103,7 @@
           <p class="card-text">{{ product.discount_price }}</p>
           <p class="card-text">{{ product.description }}</p>
           <p class="card-text">{{ product.brand }}</p>
-          <!-- <p class="card-text">{{ product.category }}</p> -->
+          <p class="card-text">{{ product.category }}</p>
           <!-- <p class="card-text"><a href="{{ product.product_image.url }}">View Product</a>{{ product.product_image }}</p> -->
           <!-- <p class="card-text"><a href="{{ product.product_image.url }}">View Product</a></p> -->
           <button class="button"><a href="{{ product.product_image.url }}"><span>View Image</span></button>
@@ -129,7 +129,7 @@
     <div class="col-md-3 card card-body p-3">
       <ul class="mystyle-products">
         <li class="product">
-          <a href="{% url 'add-to-cart' id=1 %}">
+          <a href="{% url 'add-to-cart' id=4 %}">
             <span class="onsale">Sale!</span>
             <!-- <img alt="" class="attachment-shop_catalog " src="{% static 'NovaBazaar/images/tshirt-img.png' %}" /> -->
             <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"

@@ -164,8 +164,8 @@ def add_product(request):
 
 @login_required
 def add_to_cart(request, id):
-    product = get_object_or_404(Product, pk=id)
-    return render(request, "NovaBazaar/addtocart.html", {'product': product})
+    # product = get_object_or_404(Product, pk=id)
+    return render(request, "NovaBazaar/addtocart.html", {"id": id})
     # return HttpResponse(f'Product added to cart: {product.name}')
 
 @login_required
