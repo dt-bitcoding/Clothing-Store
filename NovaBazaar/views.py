@@ -79,14 +79,13 @@ def Userlogin(request):
             login(request, user)
             return redirect("home")
         else:
-            return HttpResponse("Please correct Informaton")
+            return HttpResponse("Check Your email and password correct details...")
     else:
         form = Form()
     return render(request, "NovaBazaar/login.html", {"form": form})
 
 def success_view(request):
     return render(request, "NovaBazaar/home.html")
-
 
 def pass_reset_form(request):
     if request.method == "POST":
@@ -137,8 +136,8 @@ def logout(request):
 
 
 def product_detail(request, id):
-    return render(request, "NovaBazaar/productdetail.html", {"id": id})
-
+    product = get_object_or_404(Product, id=id)
+    return render(request, 'NovaBazaar/productdetail.html', {'product': product})
 
 def add_product(request):
     if request.method == "POST":
