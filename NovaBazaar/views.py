@@ -153,22 +153,14 @@ def add_product(request):
 
     # return render(request, "NovaBazaar/add_product.html")
 
-
 @login_required
 def add_to_cart(request, id):
-    # product = get_object_or_404(Product, pk=id)
-    return render(request, "NovaBazaar/addtocart.html", {"id": id})
-    # return HttpResponse(f'Product added to cart: {product.name}')
-
+    product = get_object_or_404(Product, pk=id)
+    return render(request, "NovaBazaar/addtocart.html", {'product': product})
 
 @login_required
 def remove_from_cart(request, id):
-    print("ID ", id)
-    # cart = cart.objects.get(id=id, user=request.user)
-    # cart.delete()
     return redirect("home")
-    # return render(request, "NovaBazaar/removefromcart.html", {"id": id})
-
 
 @login_required
 def cart_detail(request):

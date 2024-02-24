@@ -28,7 +28,7 @@
       width: 20px;
       text-align: left;
       text-decoration: none;
-      margin: 65px 1px;
+      margin: 62px 1px;
       border-radius: 50%;
     }
 
@@ -102,9 +102,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
+          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="electronicsDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -148,7 +148,7 @@
             </li>
             <li class="nav-item mx-2">
 
-              <a href="{% url 'add-to-cart' id=4 %}" class="nav-link text-white"><span class="badge bg-danger">2</span> Cart</a>
+              <a href="{% url 'add-to-cart' id=4 %}" class="nav-link text-white"><span class="badge bg-danger"></span> Cart</a>
 
             </li>
             <li class="nav-item mx-2">
@@ -167,10 +167,10 @@
   {% block main-content %} {% endblock main-content %}
 
   <!-- Start Footer -->
-  <a href="https://www.facebook.com/Bitcodings" class="fa fa-facebook"></a>
-  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-instagram"></a>
-  <a href="https://twitter.com/bitcodings" class="fa fa-pinterest"></a>
-  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-snapchat-ghost"></a>
+  <a href="https://www.facebook.com/Bitcodings" class="fa fa-facebook" style="height: 8px; width: 8px;"></a>
+  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-instagram" style="height: 8px; width: 8px;"></a>
+  <a href="https://twitter.com/bitcodings" class="fa fa-pinterest" style="height: 8px; width: 8px;"></a>
+  <a href="https://www.instagram.com/bitcoding.solutions/" class="fa fa-snapchat-ghost" style="height: 8px; width: 8px;"></a>
 
 
   <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>

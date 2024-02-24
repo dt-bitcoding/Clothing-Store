@@ -4,6 +4,8 @@
 {% block title %}Cart{% endblock title %}
 
 {% block main-content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <div class="container my-5">
   <div class="row">
     <h1 class="text-center mb-5">Shopping Cart</h1>
@@ -11,42 +13,40 @@
       <div class="card">
         <div class="card-body">
           <h3>Cart</h3>
-
           <div class="row my-5">
-            <div class="col-sm-3 text-center align-self-center"> <img
+            <!-- <div class="col-sm-3 text-center align-self-center"> <img
                 src="{% static 'NovaBazaar/images/tshirt-img.png'%}" alt="" srcset=""
-                class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></div>
+                class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></div> -->
             <div class="col-sm-9">
-              <div>
-                <h5>Product 2</h5>
-                <p class="mb-2 text-muted small">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio corrupti repudiandae quas tenetur? Vel harum iste impedit ad cupiditate sint soluta consequuntur
-                  sed, enim, eligendi labore molestiae! Mollitia, ad exercitationem!</p>
-                <div class="my-3">
-                  <label for="quantity">Quantity:</label>
-                  <a class="minus-cart btn"><i class="fas fa-minus-square fa-lg"></i></a>
-                  <span id="quantity">2</span>
-                  <a class="plus-cart btn"><i class="fas fa-plus-square fa-lg"></i></a>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <a href="{% url 'home' %}" class="btn btn-sm btn-secondary mr-3">Remove item </a>
-                  <p class="mb-0"><span><strong>Rs. 320.00</strong></span></p>
-                </div>
-              </div>
+              <title>{{ product.name }}</title>
+              <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
+                style="width: 150px; height: 150px;">
+              <h5 class="card-title">Name :- {{ product.title }}</h5>
+              <p class="card-text">Price:- {{ product.selling_price }}</p>
+              <p class="card-text">Discount Rate :- {{ product.discount_price }}</p>
             </div>
           </div>
+          <div class="col-sm-5 offset-sm-1">
+            <!-- Product ID: {{ product.id }}
+            <a href="{% url 'add-to-cart' product.id %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a> -->
 
-          <title>{{ product.name }}</title>
-          <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
-            style="width: 150px; height: 150px;">
-          <h5 class="card-title">{{ product.title }}</h5>
-          <p class="card-text">{{ product.selling_price }}</p>
-          <p class="card-text">{{ product.discount_price }}</p>
-          <p class="card-text">{{ product.description }}</p>
-          <p class="card-text">{{ product.brand }}</p>
-          <p class="card-text">{{ product.category }}</p>
+            <div class="my-3" style="margin-right: 30%;">
 
+              <button id="minus-btn" style="margin-left: 10%; background-color: rgb(255, 136, 25);"><span
+                  class="minus"></span>-</button>
+              <input type="text" value="1" />
+              <button id="plus-btn" style="background-color: rgb(255, 136, 25);"><span class="plus"></span>+</button>
+            </div>
 
+            <div class="d-flex justify-content-between" style="margin-right: 22%;">
+              <a href="{% url 'add-to-cart' product.id %}" class="btn btn-sm btn-secondary mr-3">Remove item </a>
+
+              <div style="margin-left: -26%; margin-top: 5px;">
+                <a href="{% url 'buy-now' %}" class="btn btn-success shadow px-5 py-2 ms-4">Buy Now</a>
+              </div>
+              <!-- <p class="mb-0"><span><strong>Rs. 320.00</strong></span></p> -->
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -71,25 +71,42 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="float: right; margin-right: 450px; margin-top: 5px;">Checkout</button> -->
-
 </div>
 
-<!-- <div class="container">
+<div class="container">
   <div class="row">
     <div class="col-sm-8">
       <div class="card">
         <div class="card-body">
-          <h5 class="mb-4">We accept</h5>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="float: right;">Checkout</button>
+          <h5 class="mb-4">payment accept</h5>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+            data-whatever="@mdo" style="float: right;"><a href="{% url 'checkout' %}"
+              class="btn btn-primary">Checkout</a></button>
           <img src="{% static 'NovaBazaar/images/payment.png' %}" alt="" class="img-fluid">
         </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
+<script>
+  $(document).ready(function () {
+    $('#minus-btn').click(function () {
+      var $input = $(this).parent().find('input');
+      var count = parseInt($input.val()) - 1;
+      count = count < 1 ? 1 : count;
+      $input.val(count);
+      $input.change();
+      return false;
+    });
+
+    $('#plus-btn').click(function () {
+      var $input = $(this).parent().find('input');
+      $input.val(parseInt($input.val()) + 1);
+      $input.change();
+      return false;
+    });
+  });
+</script>
 {% endblock main-content %}
