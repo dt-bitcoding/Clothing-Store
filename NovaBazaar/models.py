@@ -52,24 +52,14 @@ class Order(models.Model):
     def __str__(self):
         return self.user.FirstName + " " + self.product.name
     
-# class Cart(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-#     # quantity = models.IntegerField()
-#     quantity = models.PositiveIntegerField(default=1)
-
-#     def __str__(self):
-#         return self.product
-    
 class Cart(models.Model):
-    product_image = models.ImageField(upload_to='Product/')
-    name = models.CharField(max_length=255)
-    discription = models.TextField()
-    price = models.FloatField()
-
-    def __str__(self):
-        return self.name
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    count = models.IntegerField(default=1)
     
+    def __str__(self):
+        return str(self.user)
+
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)

@@ -19,8 +19,11 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from .models import Cart
+
 
 User = get_user_model()
+
 
 def home(request):
     products = Product.objects.all()
@@ -29,11 +32,14 @@ def home(request):
         request, "NovaBazaar/home.html", {"products": products, "category": category}
     )
 
+
 def contact(request):
     return render(request, "NovaBazaar/contact.html")
 
+
 def about(request):
     return render(request, "NovaBazaar/about.html")
+
 
 def signup(request):
     if request.method == "POST":
@@ -61,8 +67,9 @@ def signup(request):
 
     return render(request, "NovaBazaar/index.html", {"form": form})
 
+
 def Userlogin(request):
-    if request.method == "POST":   
+    if request.method == "POST":
         email = request.POST.get("email", "")
         Password = request.POST.get("Password", "")
         user = authenticate(request, email=email, password=Password)
@@ -77,8 +84,10 @@ def Userlogin(request):
         form = Form()
     return render(request, "NovaBazaar/login.html", {"form": form})
 
+
 def success_view(request):
     return render(request, "NovaBazaar/home.html")
+
 
 def pass_reset_form(request):
     if request.method == "POST":
@@ -115,18 +124,23 @@ def pass_reset_form(request):
 def pass_reset_confirm(request):
     return render(request, "NovaBazaar/pass_reset_confirm.html")
 
+
 def pass_reset_done(request):
     return render(request, "NovaBazaar/pass_reset_done.html")
+
 
 def pass_reset_complete(request):
     return render(request, "NovaBazaar/pass_reset_complete.html")
 
+
 def logout(request):
     return render(request, "NovaBazaar/index.html")
 
-def product_detail(request, id):
+
+def product_detail(request, id, *args, **kwargs):
     product = get_object_or_404(Product, id=id)
-    return render(request, 'NovaBazaar/productdetail.html', {'product': product})
+    return render(request, "NovaBazaar/productdetail.html", {"product": product})
+
 
 def add_product(request):
     if request.method == "POST":
@@ -140,16 +154,37 @@ def add_product(request):
 
     return render(request, "NovaBazaar/add_product.html", {"form": form})
 
-    # return render(request, "NovaBazaar/add_product.html")
 
 @login_required
+# def add_to_cart(request, id):
+#     product = get_object_or_404(Product, pk=id)
+#     return render(request, "NovaBazaar/addtocart.html", {'product': product})
+
+
 def add_to_cart(request, id):
-    product = get_object_or_404(Product, pk=id)
-    return render(request, "NovaBazaar/addtocart.html", {'product': product})
+    if Cart.objects.filter(product=id, user=request.user):
+        return render(
+            request,
+            "NovaBazaar/cart.html",
+            {"cart": Cart.objects.filter(user=request.user)},
+        )
+    else:
+
+        # Cart.objects.create(user=request.user)
+        cart_item = Cart(product_id=id, user=request.user)
+        cart_item.save()
+        return render(
+            request,
+            "NovaBazaar/cart.html",
+            {"cart": Cart.objects.filter(user=request.user)},
+        )
+
+
 
 @login_required
 def remove_from_cart(request, id):
     return redirect("home")
+
 
 @login_required
 def cart_detail(request):

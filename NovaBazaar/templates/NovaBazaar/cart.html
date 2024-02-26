@@ -14,17 +14,24 @@
         <div class="card-body">
           <h3><strong>Cart</strong></h3>
 
+          <!-- {{ product }} -->
+          <!-- <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
+                style="width: 150px; height: 150px;">
+          <h5 class="card-title"><strong>Name :-</strong> {{ product.title }}</h5>
+          <p class="card-text"><strong>Price :-</strong> {{ product.selling_price }}</p>
+          <p class="card-text"><strong>Discription :-</strong> {{ product.description }}</p> -->
+          
           <div class="row my-5">
             <div class="col-sm-9">
-              <title>{{ product.name }}</title>
+              <title>{{ product }}</title>
               <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
                 style="width: 150px; height: 150px;">
-                <h5 class="card-title"><strong>Name :-</strong> {{ product.title }}</h5>
-                <p class="card-text"><strong>Discription :-</strong> {{ product.description }}</p>
-                <p class="card-text"><strong>Price :-</strong> {{ product.selling_price }}</p>              
+              <h5 class="card-title"><strong>Name :-</strong> {{ product.title }}</h5>
+              <p class="card-text"><strong>Discription :-</strong> {{ product.description }}</p>
+              <p class="card-text"><strong>Price :-</strong> {{ product.selling_price }}</p>
             </div>
           </div>
-
+          
           <div class="col-sm-5 offset-sm-1">
             <div class="number">
               <span class="minus"></span>
@@ -33,13 +40,13 @@
             </div>
 
             <div class="d-flex justify-content-between">
-              <a href="{% url 'add-to-cart' product.id %}" class="btn btn-sm btn-secondary mr-3">Remove item </a>
 
               <div style="margin-left: -26%; margin-top: 5px;">
                 <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
