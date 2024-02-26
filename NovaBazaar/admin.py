@@ -20,7 +20,7 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'product', 'quantity')
+    list_display = ('id', 'product_image', 'name', 'discription', 'price')
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):

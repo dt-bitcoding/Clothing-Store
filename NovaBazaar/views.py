@@ -20,9 +20,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
-
 User = get_user_model()
-
 
 def home(request):
     products = Product.objects.all()
@@ -31,14 +29,11 @@ def home(request):
         request, "NovaBazaar/home.html", {"products": products, "category": category}
     )
 
-
 def contact(request):
     return render(request, "NovaBazaar/contact.html")
 
-
 def about(request):
     return render(request, "NovaBazaar/about.html")
-
 
 def signup(request):
     if request.method == "POST":
@@ -66,10 +61,8 @@ def signup(request):
 
     return render(request, "NovaBazaar/index.html", {"form": form})
 
-
 def Userlogin(request):
-    if request.method == "POST":
-        
+    if request.method == "POST":   
         email = request.POST.get("email", "")
         Password = request.POST.get("Password", "")
         user = authenticate(request, email=email, password=Password)
@@ -122,18 +115,14 @@ def pass_reset_form(request):
 def pass_reset_confirm(request):
     return render(request, "NovaBazaar/pass_reset_confirm.html")
 
-
 def pass_reset_done(request):
     return render(request, "NovaBazaar/pass_reset_done.html")
-
 
 def pass_reset_complete(request):
     return render(request, "NovaBazaar/pass_reset_complete.html")
 
-
 def logout(request):
     return render(request, "NovaBazaar/index.html")
-
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)

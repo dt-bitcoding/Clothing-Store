@@ -24,7 +24,6 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     
-
 class Product(models.Model):
     title = models.CharField(max_length=255)
     selling_price = models.FloatField()
@@ -33,7 +32,6 @@ class Product(models.Model):
     brand = models.CharField(max_length=255)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     product_image = models.ImageField(upload_to='Product/')
-    # product_image = models.ImageField(upload_to="product/")
     
     def __str__(self):
         return self.title
@@ -54,14 +52,23 @@ class Order(models.Model):
     def __str__(self):
         return self.user.FirstName + " " + self.product.name
     
+# class Cart(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     # quantity = models.IntegerField()
+#     quantity = models.PositiveIntegerField(default=1)
+
+#     def __str__(self):
+#         return self.product
+    
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    # quantity = models.IntegerField()
-    quantity = models.PositiveIntegerField(default=1)
+    product_image = models.ImageField(upload_to='Product/')
+    name = models.CharField(max_length=255)
+    discription = models.TextField()
+    price = models.FloatField()
 
     def __str__(self):
-        return self.user.FirstName + " " + self.product.name
+        return self.name
     
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

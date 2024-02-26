@@ -12,39 +12,32 @@
     <div class="col-sm-8">
       <div class="card">
         <div class="card-body">
-          <h3>Cart</h3>
+          <h3><strong>Cart</strong></h3>
+
           <div class="row my-5">
-            <!-- <div class="col-sm-3 text-center align-self-center"> <img
-                src="{% static 'NovaBazaar/images/tshirt-img.png'%}" alt="" srcset=""
-                class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></div> -->
             <div class="col-sm-9">
               <title>{{ product.name }}</title>
               <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
                 style="width: 150px; height: 150px;">
-              <h5 class="card-title">Name :- {{ product.title }}</h5>
-              <p class="card-text">Price:- {{ product.selling_price }}</p>
-              <p class="card-text">Discount Rate :- {{ product.discount_price }}</p>
+                <h5 class="card-title"><strong>Name :-</strong> {{ product.title }}</h5>
+                <p class="card-text"><strong>Discription :-</strong> {{ product.description }}</p>
+                <p class="card-text"><strong>Price :-</strong> {{ product.selling_price }}</p>              
             </div>
           </div>
+
           <div class="col-sm-5 offset-sm-1">
-            <!-- Product ID: {{ product.id }}
-            <a href="{% url 'add-to-cart' product.id %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a> -->
-
-            <div class="my-3" style="margin-right: 30%;">
-
-              <button id="minus-btn" style="margin-left: 10%; background-color: rgb(255, 136, 25);"><span
-                  class="minus"></span>-</button>
+            <div class="number">
+              <span class="minus"></span>
               <input type="text" value="1" />
-              <button id="plus-btn" style="background-color: rgb(255, 136, 25);"><span class="plus"></span>+</button>
+              <span class="plus"></span>
             </div>
 
-            <div class="d-flex justify-content-between" style="margin-right: 22%;">
+            <div class="d-flex justify-content-between">
               <a href="{% url 'add-to-cart' product.id %}" class="btn btn-sm btn-secondary mr-3">Remove item </a>
 
               <div style="margin-left: -26%; margin-top: 5px;">
-                <a href="{% url 'buy-now' %}" class="btn btn-success shadow px-5 py-2 ms-4">Buy Now</a>
+                <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
               </div>
-              <!-- <p class="mb-0"><span><strong>Rs. 320.00</strong></span></p> -->
             </div>
           </div>
         </div>
@@ -57,7 +50,9 @@
           <h3>The Total Amount of</h3>
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Amount<span>Rs. 430.00</span></li>
+              Amount<span>
+                <p class="card-text">{{ product.selling_price }}</p>
+              </span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center px-0">Shipping<span>Rs.
                 70.00</span></li>
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
@@ -80,9 +75,6 @@
       <div class="card">
         <div class="card-body">
           <h5 class="mb-4">payment accept</h5>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-            data-whatever="@mdo" style="float: right;"><a href="{% url 'checkout' %}"
-              class="btn btn-primary">Checkout</a></button>
           <img src="{% static 'NovaBazaar/images/payment.png' %}" alt="" class="img-fluid">
         </div>
       </div>
@@ -92,21 +84,21 @@
 
 <script>
   $(document).ready(function () {
-    $('#minus-btn').click(function () {
-      var $input = $(this).parent().find('input');
+    $(".minus").click(function () {
+      var $input = $(this).parent().find("input");
       var count = parseInt($input.val()) - 1;
       count = count < 1 ? 1 : count;
       $input.val(count);
       $input.change();
       return false;
     });
-
-    $('#plus-btn').click(function () {
-      var $input = $(this).parent().find('input');
+    $(".plus").click(function () {
+      var $input = $(this).parent().find("input");
       $input.val(parseInt($input.val()) + 1);
       $input.change();
       return false;
     });
   });
+
 </script>
 {% endblock main-content %}
