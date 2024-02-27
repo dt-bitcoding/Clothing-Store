@@ -176,11 +176,19 @@ def add_to_cart(request, id):
         Cart.objects.create(product=product, user=request.user, count=1)
     return redirect("cart-list")
 
-
-
 @login_required
 def remove_from_cart(request, id):
-    return redirect("home")
+    # product = Product.objects.get(pk=id)
+    # cart = Cart.objects.get()
+    # cart.products.remove(product)
+
+    cart_item = get_object_or_404(Cart, id=id)
+
+    if cart_item.user == request.user:
+        cart_item.delete()
+        messages.success(request, "Item removed from your cart.")
+
+    return redirect('cart')
 
 
 @login_required

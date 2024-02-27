@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-body">
           <h3><strong>Cart</strong></h3>
-          
+
 
           <!-- {{ cart }}
           <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
@@ -21,7 +21,7 @@
           <h5 class="card-title"><strong>Name :-</strong> {{ product.title }}</h5>
           <p class="card-text"><strong>Price :-</strong> {{ product.selling_price }}</p>
           <p class="card-text"><strong>Discription :-</strong> {{ product.description }}</p> -->
-          
+
           {% for cart in carts %}
           <div class="row my-5">
             <div class="col-sm-9">
@@ -36,15 +36,18 @@
 
           <div class="col-sm-5 offset-sm-1">
             <div class="number">
-              <span class="minus"></span>
-              <input type="text" value= {{cart.count}} />
-              <span class="plus"></span>
+              <span class="minus">-</span>
+              <input type="text" value={{cart.count}} />
+              <span class="plus">+</span>
             </div>
 
             <div class="d-flex justify-content-between">
 
               <div style="margin-left: -26%; margin-top: 5px;">
                 <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+
+                <a href="{% url 'cart-list'  %}" class="btn btn-warning shadow px-5 py-2 ms-4">Remove</a>
+                
               </div>
             </div>
           </div>
