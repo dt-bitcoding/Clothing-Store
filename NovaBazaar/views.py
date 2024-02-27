@@ -34,6 +34,7 @@ def home(request):
         request, "NovaBazaar/home.html", {"products": products, "category": category}
     )
 
+
 def contact(request):
     return render(request, "NovaBazaar/contact.html")
 
@@ -78,17 +79,16 @@ def Userlogin(request):
             login(request, user)
             return redirect("home")
         else:
-            messages.error(request, 'User Invalid. Try Again !')
+            messages.error(request, "User Invalid. Try Again !")
             return redirect("login")
     else:
         form = Form()
     return render(request, "NovaBazaar/login.html", {"form": form})
-        
-    
-    
+
 
 def success_view(request):
     return render(request, "NovaBazaar/home.html")
+
 
 def pass_reset_form(request):
     if request.method == "POST":
@@ -155,27 +155,28 @@ def add_product(request):
 
     return render(request, "NovaBazaar/add_product.html", {"form": form})
 
+def cart_list(request):
+    carts = Cart.objects.filter(user=request.user)
+    return render(request, "NovaBazaar/cart.html", {'carts': carts})
 
 @login_required
 def add_to_cart(request, id):
-    product = Product.objects.get(id=id)
-    cart_item, created = Cart.objects.get_or_create(product=product, user=request.user)
-    cart_item.save()
-
-    if Cart.objects.filter(product=id, user=request.user):
-        return render(
-            request,
-            "NovaBazaar/cart.html",
-            {"cart": Cart.objects.filter(user=request.user)},
-        )
+    print("sdfsdf", request.method)
+    carts = Cart.objects.filter(user=request.user)
+    print("cart", carts)
+    if carts.filter(product=id).exists():
+        print("id", id)
+        cart = Cart.objects.get(product=id, user=request.user)
+        cart.count += 1
+        cart.save()
+        
     else:
+        product = Product.objects.get(id=id)
+        print("product", product)
+        Cart.objects.create(product=product, user=request.user, count=1)
+    return redirect("cart-list")
 
-        Cart.objects.create(product=id , user=request.user)
-        return render(
-            request,
-            "NovaBazaar/cart.html",
-            {"cart": Cart.objects.filter(user=request.user)},
-        )
+
 
 @login_required
 def remove_from_cart(request, id):
