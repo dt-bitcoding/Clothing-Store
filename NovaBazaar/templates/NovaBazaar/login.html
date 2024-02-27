@@ -9,16 +9,19 @@
       <hr>
       <form action="" style="background-color: rgb(255, 186, 83);" method="post" novalidate class="shadow p-5">
         {% csrf_token %}
+
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
         {{form.as_p}}
 
-        {% if form.errors %}
-        <div class="error">
-          <p>Please correct the error below.</p>
-        </div>
-        {% endif %}
-
         <small><a href="{% url 'reset_password' %}">Forgot Password ?</a></small> <br>
-        <button>Log In</button>
+        <button type="submit">Log In</button>
         <br>
         <div class="text-center text-primary fw-bold"><small>New to Clothing Store ? <a
               href="{% url 'customerregistration' %}" class="text-danger">Create an Account</a> </small></div>

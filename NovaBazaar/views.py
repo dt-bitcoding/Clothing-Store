@@ -20,6 +20,8 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from .models import Cart
+from django.core.exceptions import ValidationError
+from django.contrib import messages
 
 
 User = get_user_model()
@@ -74,16 +76,16 @@ def Userlogin(request):
         user = authenticate(request, email=email, password=Password)
         if user is not None:
             login(request, user)
-            # return redirect("home")
-            return HttpResponseRedirect("Invalid User")
-        return HttpResponseRedirect("/login")
-    
-    #     else:
-    #         return HttpResponse("Invalid User")
-    # else:
-    form = Form()
+            return redirect("home")
+        else:
+            messages.error(request, 'User Invalid. Try Again !')
+            return redirect("login")
+    else:
+        form = Form()
     return render(request, "NovaBazaar/login.html", {"form": form})
-
+        
+    
+    
 
 def success_view(request):
     return render(request, "NovaBazaar/home.html")
