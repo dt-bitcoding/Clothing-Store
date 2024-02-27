@@ -32,7 +32,6 @@ def home(request):
         request, "NovaBazaar/home.html", {"products": products, "category": category}
     )
 
-
 def contact(request):
     return render(request, "NovaBazaar/contact.html")
 
@@ -73,21 +72,21 @@ def Userlogin(request):
         email = request.POST.get("email", "")
         Password = request.POST.get("Password", "")
         user = authenticate(request, email=email, password=Password)
-        print("User ", user)
         if user is not None:
-            print("user: user")
             login(request, user)
-            return redirect("home")
-        else:
-            return HttpResponse("Check Your email and password correct details...")
-    else:
-        form = Form()
+            # return redirect("home")
+            return HttpResponseRedirect("Invalid User")
+        return HttpResponseRedirect("/login")
+    
+    #     else:
+    #         return HttpResponse("Invalid User")
+    # else:
+    form = Form()
     return render(request, "NovaBazaar/login.html", {"form": form})
 
 
 def success_view(request):
     return render(request, "NovaBazaar/home.html")
-
 
 def pass_reset_form(request):
     if request.method == "POST":
@@ -162,6 +161,12 @@ def add_product(request):
 
 
 def add_to_cart(request, id):
+    # cart = Cart.objects.get_or_create(user=request.user)
+    # product = get_object_or_404(Product, id=id) 
+    # print("id", 'id')
+    # cart_item = cart.cart_items.get_or_create(product=product)
+    # cart_item.save()
+
     if Cart.objects.filter(product=id, user=request.user):
         return render(
             request,
@@ -170,16 +175,12 @@ def add_to_cart(request, id):
         )
     else:
 
-        # Cart.objects.create(user=request.user)
-        cart_item = Cart(product_id=id, user=request.user)
-        cart_item.save()
+        Cart.objects.create(product=id , user=request.user)
         return render(
             request,
             "NovaBazaar/cart.html",
             {"cart": Cart.objects.filter(user=request.user)},
         )
-
-
 
 @login_required
 def remove_from_cart(request, id):

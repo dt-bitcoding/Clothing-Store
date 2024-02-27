@@ -14,21 +14,22 @@
         <div class="card-body">
           <h3><strong>Cart</strong></h3>
 
-          <!-- {{ product }} -->
-          <!-- <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
+          <!-- {{ product }}
+          <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
                 style="width: 150px; height: 150px;">
           <h5 class="card-title"><strong>Name :-</strong> {{ product.title }}</h5>
           <p class="card-text"><strong>Price :-</strong> {{ product.selling_price }}</p>
           <p class="card-text"><strong>Discription :-</strong> {{ product.description }}</p> -->
-          
+
+          {% for cart in carts %}
           <div class="row my-5">
             <div class="col-sm-9">
-              <title>{{ product }}</title>
-              <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
+              <title>{{ cart }}</title>
+              <img alt="" class="attachment-shop_catalog" src="{{ cart.product_image.url }}"
                 style="width: 150px; height: 150px;">
-              <h5 class="card-title"><strong>Name :-</strong> {{ product.title }}</h5>
-              <p class="card-text"><strong>Discription :-</strong> {{ product.description }}</p>
-              <p class="card-text"><strong>Price :-</strong> {{ product.selling_price }}</p>
+              <h5 class="card-title"><strong>Name :-</strong> {{ cart.title }}</h5>
+              <p class="card-text"><strong>Discription :-</strong> {{ cart.description }}</p>
+              <p class="card-text"><strong>Price :-</strong> {{ cart.selling_price }}</p>
             </div>
           </div>
           
@@ -46,7 +47,7 @@
               </div>
             </div>
           </div>
-
+          {% endfor %}
         </div>
       </div>
     </div>
