@@ -157,17 +157,10 @@ def add_product(request):
 
 
 @login_required
-# def add_to_cart(request, id):
-#     product = get_object_or_404(Product, pk=id)
-#     return render(request, "NovaBazaar/addtocart.html", {'product': product})
-
-
 def add_to_cart(request, id):
-    # cart = Cart.objects.get_or_create(user=request.user)
-    # product = get_object_or_404(Product, id=id) 
-    # print("id", 'id')
-    # cart_item = cart.cart_items.get_or_create(product=product)
-    # cart_item.save()
+    product = Product.objects.get(id=id)
+    cart_item, created = Cart.objects.get_or_create(product=product, user=request.user)
+    cart_item.save()
 
     if Cart.objects.filter(product=id, user=request.user):
         return render(

@@ -7,17 +7,18 @@
     <div class="col-sm-6 offset-sm-3">
       <h3>Login</h3>
       <hr>
-      <form action="" style="background-color: rgb(255, 186, 83);" method="post" novalidate class="shadow p-5">
-        {% csrf_token %}
 
-        {% if messages %}
+<!-- ####################### User Invalid error massage ################### -->
+      {% if messages %}
         <ul class="messages">
           {% for message in messages %}
           <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
-        
+
+      <form action="" style="background-color: rgb(255, 186, 83);" method="post" novalidate class="shadow p-5">
+        {% csrf_token %}
         {{form.as_p}}
 
         <small><a href="{% url 'reset_password' %}">Forgot Password ?</a></small> <br>
