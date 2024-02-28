@@ -161,40 +161,32 @@ def cart_list(request):
 
 @login_required
 def add_to_cart(request, id):
-    print("sdfsdf", request.method)
+    # print("sdfsdf", request.method)
     carts = Cart.objects.filter(user=request.user)
-    print("cart", carts)
+    # print("cart", carts)
     if carts.filter(product=id).exists():
-        print("id", id)
+        # print("id", id)
         cart = Cart.objects.get(product=id, user=request.user)
         cart.count += 1
         cart.save()
         
     else:
         product = Product.objects.get(id=id)
-        print("product", product)
+        # print("product", product)
         Cart.objects.create(product=product, user=request.user, count=1)
     return redirect("cart-list")
 
 @login_required
 def remove_from_cart(request, id):
-    # product = Product.objects.get(pk=id)
-    # cart = Cart.objects.get()
-    # cart.products.remove(product)
-
     cart_item = get_object_or_404(Cart, id=id)
-
     if cart_item.user == request.user:
         cart_item.delete()
         messages.success(request, "Item removed from your cart.")
-
-    return redirect('cart')
-
+    return redirect('cart-list')
 
 @login_required
 def cart_detail(request):
     return render(request, "NovaBazaar/cartdetail.html")
-
 
 def buy_now(request):
     return render(request, "NovaBazaar/buynow.html")
