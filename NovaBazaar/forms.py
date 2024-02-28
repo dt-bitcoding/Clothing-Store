@@ -43,7 +43,6 @@ class Form(forms.Form):
 class Cart(forms.Form):
     model = Cart
     fields = ["user", "product"]
-    # quantity = forms.IntegerField(min_value=1, initial=1, widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -55,3 +54,7 @@ class CustomerForm(forms.ModelForm):
         model = Customer
         fields = ["name", "address", "city", "state", "zipcode"]
         
+class BuyNowForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1)
+    
+    

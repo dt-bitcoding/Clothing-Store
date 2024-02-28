@@ -1,8 +1,8 @@
 import uuid
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
-from .models import User
-from .forms import Form, MyForm, ProductForm, CustomerForm
+from .models import User, Order
+from .forms import Form, MyForm, ProductForm, CustomerForm, BuyNowForm
 from NovaBazaar.models import User, Product, Category
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
@@ -188,8 +188,23 @@ def remove_from_cart(request, id):
 def cart_detail(request):
     return render(request, "NovaBazaar/cartdetail.html")
 
-def buy_now(request):
-    return render(request, "NovaBazaar/buynow.html")
+def buy_now(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    form = BuyNowForm(request.POST or None)
+
+    if form.is_valid():
+        quantity = form.cleaned_data['quantity']
+        order, created = Order.objects.get_or_create(user=request.user)
+        order_item, created = Order.objects.get_or_create(order=order, product=product)
+        order_item.quantity += quantity
+        order_item.subtotal = order_item.quantity * product.price
+        order_item.save()
+        order.total_price += order_item.subtotal
+        order.save()
+        return redirect('checkout')  # Redirect to the checkout page
+
+    return render(request, 'NovaBazaar/buynow.html', {'product': product, 'form': form})
+    # return render(request, "NovaBazaar/buynow.html")
 
 
 def category_page(request):
