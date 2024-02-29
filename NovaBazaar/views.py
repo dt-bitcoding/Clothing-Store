@@ -190,25 +190,20 @@ def cart_detail(request):
 
 def buy_now(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    form = BuyNowForm(request.POST or None)
-
     if request.method == 'POST':
+
         form = BuyNowForm(request.POST)
         if form.is_valid():
-            product = Product.objects.get(id=product_id)
-            product.quantity -= form.cleaned_data.get('quantity')
 
-            product.save()
-            order = Order.objects.create(
-                user=request.user,
-                product=product,
-                quantity=form.cleaned_data.get('quantity'),
-                total_price=product.price * form.cleaned_data.get('quantity')
-            )
-            return redirect('checkout')
+                if form.cleaned_data['user'] is not None:
+                    form.save()  
+                    return redirect('checkout')  
+                else:
+                    pass
     else:
         form = BuyNowForm()
-    return render(request, 'NovaBazaar/buynow.html', {'product': product, 'form': form})
+        context = {'product': product, 'form': form}
+    return render(request, 'NovaBazaar/buynow.html', context)
 
 def category_page(request):
     print(request.GET.get("id"))
@@ -221,25 +216,6 @@ def category_page(request):
 
 
 @login_required
-# def profile(request):
-#     if request.method == "POST":
-#         form = CustomerForm(request.POST)
-#         if form.is_valid():
-#             name = request.POST.get("name")
-#             address = request.POST.get("address")
-#             city = request.POST.get("city")
-#             state = request.POST.get("state")
-#             zipcode = request.POST.get("zipcode")
-#             form = Customer(
-#                 name=name, address=address, city=city, state=state, zipcode=zipcode
-#             )
-#             form.save()
-#             return redirect("home")
-#     else:
-#         form = CustomerForm()
-#     return render(request, "NovaBazaar/profile.html", {"form": form})
-
-
 def profile(request):
     if request.method == "POST":
         form = CustomerForm(request.POST)

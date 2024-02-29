@@ -6,9 +6,9 @@
 <div class="container">
     <div class="row my-3">
         <div class="col-sm-6 offset-sm-3">
-            <div method="post" action="{% url 'buy-now' product_id=product.id %}">
+            <div method="post">
 
-                <form method="post" action="{% url 'buy-now' product_id=product.id %}">
+                <form method="post" action="{% if cart.product.id %}{% url 'buy-now' product_id=cart.product.id %}{% endif %}">
 
                     {% csrf_token %}
                     {{ form.as_p }}
