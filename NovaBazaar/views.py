@@ -256,9 +256,16 @@ def customer_registration(request):
     return render(request, "NovaBazaar/customer_registration.html", {"form": form})
 
 
-def checkout(request):
-    return render(request, "NovaBazaar/checkout.html")
-
+def checkout(request, product_id):
+    product_id = get_object_or_404(Product, id=product_id)
+    if request.method == "POST":
+        form = BuyNowForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("checkout")
+    else:
+        form = BuyNowForm()
+    return render(request, "NovaBazaar/checkout.html", {"product_id": product_id})
 
 def address(request):
     return render(request, "NovaBazaar/address.html")

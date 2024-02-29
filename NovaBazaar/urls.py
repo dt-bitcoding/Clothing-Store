@@ -44,7 +44,7 @@ urlpatterns = [
     path("orders/", views.orders, name="orders"),
     path("search/", views.search_view, name="search"),
     path("registration/", views.customer_registration, name="customerregistration"),
-    path("checkout/", views.checkout, name="checkout"),
+    path("checkout/<int:product_id>", views.checkout, name="checkout"),
     path("uploadimg/", views.upload_form, name="uploadimg"),
 
     # payment urls

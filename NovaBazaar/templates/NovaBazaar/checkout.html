@@ -5,18 +5,16 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-sm-6">
-      <h4>Order Summary</h4>
+      <h4>Order Details...</h4>
       <hr>
       <div class="card mb-2">
         <div class="card-body">
-          <h5>Product: Product 1</h5>
-          <p>Quantity: 2</p>
-          <p class="fw-bold">Price: 100.00</p>
+          <h5 class="fw-bold">Product Name : {{ cart.product.title }}</h5>
+          <p class="fw-bold">Quantity: 2</p>
+          <p class="fw-bold">Price: {{ cart.product.selling_price }}</p>
         </div>
       </div>
-      <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure
-        optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil
-        in et quis?</small>
+      
     </div>
     <div class="col-sm-4 offset-sm-1">
       <h4>Select Shipping Address</h4>
