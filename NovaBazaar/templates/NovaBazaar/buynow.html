@@ -3,14 +3,17 @@
 {% block title %}Buy Now{% endblock title %}
 {% block main-content %}
 
-<h2>{{ product.name }}</h2>
-<p>Price: ${{ product.price }}</p>
+<div class="container">
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-3">
+            <form method="post" action="{% url 'buy-now' product_id=product.id %}">
 
-<form method="post" action="{% url 'buy-now' product_id=product.id %}">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Place Order</button>
-</form>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" style="background-color: orangered;">Place Order</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock main-content %}

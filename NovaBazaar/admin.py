@@ -18,7 +18,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'product', 'quantity', 'total')
+    list_display = ("id", "user", "customer", "product", "quantity", "price", "address", "phone", "date")
 
 admin.site.register(Cart)
 class CartAdmin(admin.ModelAdmin):

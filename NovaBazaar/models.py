@@ -6,7 +6,8 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from .manager import UserManager
-# from payments.models import BasePayment
+import datetime
+from phonenumber_field.modelfields import PhoneNumberField
 
 class User(AbstractUser):
     
@@ -43,23 +44,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
-class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    total = models.FloatField()
-
-    def __str__(self):
-        return self.user.FirstName + " " + self.product.name
-    
-class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    count = models.IntegerField(default=1)
-    
-    def __str__(self):
-        return str(self.user)
-
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
@@ -70,6 +54,28 @@ class Customer(models.Model):
     
     def __str__(self):
         return self.name
+    
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    price = models.IntegerField(default=0)
+    address = models.CharField(blank=True, max_length=255)
+    phone = PhoneNumberField(null=False, blank=False, unique=True)
+    date = models.DateField(default=datetime.datetime.today)
+    
+    def __str__(self):
+        return self.name
+    
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    count = models.IntegerField(default=1)
+    
+    def __str__(self):
+        return str(self.user)
+
     
 class Search(models.Model):
     name = models.CharField(max_length=255)

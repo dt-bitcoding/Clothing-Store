@@ -1,7 +1,7 @@
 from django import forms
 
 from django.core.exceptions import ValidationError
-from NovaBazaar.models import User, Product, Customer, Cart
+from NovaBazaar.models import User, Product, Customer, Cart, Order
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate
 
@@ -54,7 +54,9 @@ class CustomerForm(forms.ModelForm):
         model = Customer
         fields = ["name", "address", "city", "state", "zipcode"]
         
-class BuyNowForm(forms.Form):
-    quantity = forms.IntegerField(min_value=1)
+class BuyNowForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ["user", "customer", "product", "quantity", "price", "address", "phone", "date"]
     
     
