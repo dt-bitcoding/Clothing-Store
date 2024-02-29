@@ -2,9 +2,10 @@
 {% load static %}
 {% block title %}Buy Now{% endblock title %}
 {% block main-content %}
-
+<h1 class="text-center mb-5">Buy Now Your Product</h1>
 <div class="container">
     <div class="row my-3">
+        
         <div class="col-sm-6 offset-sm-3">
             <div method="post" action="{% url 'buy-now' product_id=product.id %}">
 
@@ -17,5 +18,5 @@
             </div>
         </div>
     </div>
-
-    {% endblock main-content %}
+</div>
+{% endblock main-content %}

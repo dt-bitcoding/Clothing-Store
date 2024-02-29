@@ -2,8 +2,10 @@
 {% load static %}
 {% block title %}Product Detail{% endblock title %}
 {% block main-content %}
+<h1 class="text-center mb-5">Shopping Cart</h1>
 <div class="container my-5">
     <div class="row">
+        
         <div class="col-sm-5 offset-sm-1">
             <title>{{ product.name }}</title>
             <img alt="" class="attachment-shop_catalog" src="{{ product.product_image.url }}"
