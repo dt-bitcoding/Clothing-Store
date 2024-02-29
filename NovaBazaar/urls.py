@@ -37,7 +37,7 @@ urlpatterns = [
     path("cart/", views.cart_detail, name="cart"),
     path("address/", views.address, name="address"),
 
-    path("buy-now/", views.buy_now, name="buy-now"),
+    path("buy-now/<int:product_id>", views.buy_now, name="buy-now"),
 
     path("category/", views.category_page, name="category"),
     path("profile/", views.profile, name="profile"),

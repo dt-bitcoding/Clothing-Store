@@ -44,7 +44,7 @@
             <div class="d-flex justify-content-between">
 
               <div style="margin-left: -26%; margin-top: 5px;">
-                <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+                <a href="{% if product.id %}{% url 'buy-now' product_id=product.id %}{% endif %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
 
                 <a href="{% url 'remove-from-cart' id=cart.id %}" class="btn btn-warning shadow px-5 py-2 ms-4">Remove</a>
 
