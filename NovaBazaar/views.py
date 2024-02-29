@@ -192,20 +192,23 @@ def buy_now(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     form = BuyNowForm(request.POST or None)
 
-    if form.is_valid():
-        quantity = form.cleaned_data['quantity']
-        order, created = Order.objects.get_or_create(user=request.user)
-        order_item, created = Order.objects.get_or_create(order=order, product=product)
-        order_item.quantity += quantity
-        order_item.subtotal = order_item.quantity * product.price
-        order_item.save()
-        order.total_price += order_item.subtotal
-        order.save()
-        return redirect('checkout')  # Redirect to the checkout page
+    if request.method == 'POST':
+        form = BuyNowForm(request.POST)
+        if form.is_valid():
+            product = Product.objects.get(id=product_id)
+            product.quantity -= form.cleaned_data.get('quantity')
 
+            product.save()
+            order = Order.objects.create(
+                user=request.user,
+                product=product,
+                quantity=form.cleaned_data.get('quantity'),
+                total_price=product.price * form.cleaned_data.get('quantity')
+            )
+            return redirect('checkout')
+    else:
+        form = BuyNowForm()
     return render(request, 'NovaBazaar/buynow.html', {'product': product, 'form': form})
-    # return render(request, "NovaBazaar/buynow.html")
-
 
 def category_page(request):
     print(request.GET.get("id"))

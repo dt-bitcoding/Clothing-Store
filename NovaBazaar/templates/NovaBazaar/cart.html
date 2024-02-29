@@ -44,18 +44,16 @@
             <div class="d-flex justify-content-between">
               
               <div style="margin-left: -26%; margin-top: 5px;">
-                <a href="{% url 'remove-from-cart' id=cart.id %}" class="btn btn-warning shadow px-5 py-2 ms-4">Remove</a>
-              </div>
+                {% if cart.product.id %}
 
-              <div>
-                {% if product.id %}
-
-                <a href="{% url 'buy-now' product_id=product.id %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy
+                <a href="{% url 'buy-now' product_id=cart.product.id %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy
                   Now</a>
 
                 {% endif %}
 
+                <a href="{% url 'remove-from-cart' id=cart.id %}" class="btn btn-warning shadow px-5 py-2 ms-4">Remove</a>
               </div>
+
             </div>
           </div>
           {% endfor %}
