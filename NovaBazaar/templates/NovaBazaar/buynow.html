@@ -6,14 +6,16 @@
 <div class="container">
     <div class="row my-3">
         <div class="col-sm-6 offset-sm-3">
-            <form method="post" action="{% url 'buy-now' product_id=product.id %}">
+            <div method="post" action="{% url 'buy-now' product_id=product.id %}">
 
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" style="background-color: orangered;">Place Order</button>
-            </form>
+                <form method="post" action="{% url 'buy-now' product_id=product.id %}">
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Place Order</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-{% endblock main-content %}
+    {% endblock main-content %}
