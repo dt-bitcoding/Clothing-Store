@@ -16,7 +16,7 @@
 
             <a href="{% url 'add-to-cart' id=product.id %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a>
             
-            <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+            <a href="{% url 'buy-now' product_id=product.id %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
             
 
         </div>

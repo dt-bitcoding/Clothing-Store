@@ -6,7 +6,7 @@
 <h2>{{ product.name }}</h2>
 <p>Price: ${{ product.price }}</p>
 
-<form method="post" action="{% url 'buy-now' %}">
+<form method="post" action="{% url 'buy-now' product_id=product.id %}">
 
     {% csrf_token %}
     {{ form.as_p }}
